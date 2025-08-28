@@ -43,25 +43,9 @@ jobs:
           cp custom.css _site/
         fi
         
-        # Copy all background images from img directory
-        if [ -f "img/chatbot_black_mirror.png" ]; then
-          cp img/chatbot_black_mirror.png _site/
-        fi
-        
-        if [ -f "img/chatbot_dogs.png" ]; then
-          cp img/chatbot_dogs.png _site/
-        fi
-        
-        if [ -f "img/archie.jpg" ]; then
-          cp img/archie.jpg _site/
-        fi
-        
-        if [ -f "img/ostrich_black_box.png" ]; then
-          cp img/ostrich_black_box.png _site/
-        fi
-        
-        if [ -f "img/chatbot_invasion.png" ]; then
-          cp img/chatbot_invasion.png _site/
+        # Copy all images directory
+        if [ -d "images" ]; then
+          cp -r images _site/
         fi
         
     - name: Upload artifact
