@@ -134,30 +134,10 @@ Wikipedia by D. Gordon E. Robertson, CC-BY-SA 3.0
 ### Traditional ML requires lots of data for training and testing {.fragment .fade-in-then-semi-out}
 
 ::: {.fragment .fade-up}
-But it does encourage us to examine our data and the accuracy of our predictions
+But it encourages us to examine the accuracy and uncertainty of our predictions
 :::
 :::
 :::::
-
-<!-- ## Traditional classification (cont'd) -->
-
-<!-- ```{r} -->
-<!-- library(tidymodels) -->
-
-<!-- iris_classifier <- readRDS("cls_iris/iris_cls_workflow.rds") -->
-
-<!-- new_examples <- tibble( -->
-<!--   Sepal.Length = c(5.1, 6.2, 7.3, 4.8, 5.9), -->
-<!--   Sepal.Width = c(3.5, 2.9, 2.8, 3.0, 3.2), -->
-<!--   Petal.Length = c(1.4, 4.3, 6.3, 1.6, 4.8), -->
-<!--   Petal.Width = c(0.2, 1.3, 1.8, 0.2, 1.8) -->
-<!-- ) -->
-
-<!-- iris_classifier |> -->
-<!--   predict(new_data = new_examples) |> -->
-<!--   bind_cols(iris_classifier %>% predict(new_data = new_examples, type = "prob")) |> -->
-<!--   bind_cols(new_examples) -->
-<!-- ``` -->
 
 ## What we'll cover today
 
@@ -175,49 +155,24 @@ With robustness and care for delicate use cases
 :::
 
 ::: {.fragment .fade-up}
--   Flowers
--   Political speeches
--   Health symptoms
--   Crimes
+-   **Iris flowers** → prompting  
+-   **Health symptoms** → uncertainty
+-   **Crimes** → validation
 :::
 :::
 
 :::::
-
-## Setting up LLMs with ellmer
-::::: columns
-::: {.column width="60%"}
-::: {.fragment .zoom-in data-fragment-index="1" style="text-align: center;"}
-![](images/anthropic_key.jpg){fig-alt="Anthropic API key"}
-Source: [Merge.dev](https://www.merge.dev/blog/anthropic-api-key)
-:::
-:::
-::: {.column width="40%"}
-::: {.fragment .fade-up data-fragment-index="2"}
-::: {.incremental}
-1.  Select provider (Anthropic, OpenAI, Google, etc.)
-2.  Create account, add funds, and get API key
-3.  Add key to R environment `usethis::edit_r_environ()`
-    with `ANTHROPIC_API_KEY = "your_key"`
-:::
-:::
-:::
-:::::
-
-## Select model
-::: {.fragment .fade-up style="text-align: center;"}
-![](images/anthropic_models.png){fig-alt="Anthropic model names"}
-
-Source: [docs.anthropic.com](https://docs.anthropic.com/en/docs/about-claude/models/overview)
-:::
 
 ## Getting started with ellmer
 
-![](images/versicolor.jpg){fig-alt="Iris versicolor flower" style="height: 150px;"}
+![](images/versicolor.jpg){fig-alt="Iris versicolor flower" style="height: 150px;"} Iris versicolor
 
 ```{r}
 #| echo: false
 library(ellmer)
+library(dplyr)
+library(ggplot2)
+library(glue)
 ```
 
 ```{r}
@@ -229,13 +184,14 @@ type_flower <- type_object(
   features = type_string("Focus on morphology"),
 )
 str(chat$chat_structured(
-  content_image_file("images/versicolor.jpg"), type = type_flower
+  content_image_file("images/versicolor.jpg"), # or content_pdf_file(), or text
+  type = type_flower
 ))
 ```
 
 ## Getting better with ellmer
 
-![](images/versicolor.jpg){fig-alt="Iris versicolor flower" style="height: 150px;"}
+![](images/versicolor.jpg){fig-alt="Iris versicolor flower" style="height: 150px;"}  Iris versicolor
 
 ```{r}
 #| echo: true
@@ -290,56 +246,37 @@ parallel_chat_structured(
 )
 ```
 
-## Inaugural speeches
+## Prompting philosophy {auto-animate="true"}
 
-::: {layout="[100, 50]"}
-::: {.fragment .zoom-in}
-![](images/inaugural_web.png){fig-alt="Trump (2025) inaugural speech webpage" style="height: 500px;"}
+::::: columns
+::: {.column width="50%"}
+### Less is more {.fragment .fade-up}
+
+::: {.fragment .fade-up}
+✅ **Focus on**
+
+-   Clear structure
+-   Task limitations
 :::
 
-::: {.fragment .zoom-in}
-![](images/inaugural_files.png){fig-alt="Trump (2025) inaugural speech webpage"}
+::: {.fragment .fade-up}
+✅ **Handle edge cases**
+
+-   What if multiple categories fit?
+-   When to express uncertainty?
 :::
 :::
 
-## Inaugural speeches
+::: {.column width="50%"}
+::: {.fragment .fade-up}
+### Evidence {.text-center}
 
-![](images/2013_obama.jpg){fig-alt="Obama (2013) inaugural speech" style="height: 150px;"}
-![](images/2017_trump.jpg){fig-alt="Trump (2017) inaugural speech" style="height: 150px;"}
-![](images/2021_biden.jpg){fig-alt="Biden (2021) inaugural speech" style="height: 150px;"}
-![](images/2025_trump.jpg){fig-alt="Trump (2025) inaugural speech" style="height: 150px;"}
+> "There was no need to provide those carefully crafted 20,000 tokens of context and, worse than that, doing so actually *hurt* performance."
 
-```{r}
-#| echo: true
-chat <- chat("openai/gpt-4.1")
-main <- "The most prominent political {{thing}} (1-2 lowercase words)"
-type_politics <- type_object(
-  president   = type_string("Last name"),
-  year        = type_integer(),
-  leadership  = type_enum(c("democratic", "autocratic", "laissez-faire")),
-  main_theme  = type_string(interpolate(main, thing = "theme")),
-  main_issue  = type_string(interpolate(main, thing = "issue")),
-  main_threat = type_string(interpolate(main, thing = "threat"))
-)
-```
-
-## Inaugural speeches
-
-![](images/2013_obama.jpg){fig-alt="Obama (2013) inaugural speech" style="height: 120px;"}
-![](images/2017_trump.jpg){fig-alt="Trump (2017) inaugural speech" style="height: 120px;"}
-![](images/2021_biden.jpg){fig-alt="Biden (2021) inaugural speech" style="height: 120px;"}
-![](images/2025_trump.jpg){fig-alt="Trump (2025) inaugural speech" style="height: 120px;"}
-
-```{r}
-#| echo: true
-parallel_chat_structured(
-  chat,
-  prompts = list.files("cls_speeches", full.names = TRUE) |>
-              purrr::map(content_pdf_file),
-  type = type_politics,
-  include_cost = TRUE
-)
-```
+[Simon Couch (2025)](https://www.simonpcouch.com/blog/2025-08-26-predictive/)
+:::
+:::
+:::::
 
 ## Health symptoms
 
@@ -368,12 +305,12 @@ Data source: [Kaggle](https://www.kaggle.com/datasets/niyarrbarman/symptom2disea
 symptoms <- read.csv("cls_health/Symptom2Disease.csv")
 chat <- chat("openai/gpt-4.1")
 type_health <- type_object(
-  diagnosis   = type_enum(unique(symptoms$label)),
+  diagnosis   = type_enum(unique(symptoms$label)), # n = 24
   uncertainty = type_number("Err on the side of caution, and
                              provide a score (0.00-1.00) of
                              uncertainty in your diagnosis.")
 )
-unique(symptoms$label) |> head(15)
+unique(symptoms$label) |> head(12)
 ```
 
 ## Health symptoms
@@ -387,8 +324,74 @@ oai_dat <- parallel_chat_structured(
   include_cost = TRUE
 )
 mean(oai_dat$diagnosis == symptoms$label)
-mean(1 - oai_dat$uncertainty)
+mean(oai_dat$uncertainty)
 sum(oai_dat$cost)
+```
+
+## Health symptoms
+
+```{r}
+#| echo: false
+results <- tibble::tibble(
+  true_label = symptoms$label,
+  predicted = oai_dat$diagnosis,
+  uncertainty = oai_dat$uncertainty
+  ) |>
+  mutate(
+    error = true_label != predicted,
+    error_rate = as.numeric(error)
+  )
+
+correlation <- cor(results$uncertainty, results$error_rate, method = "spearman")
+
+plot_data <- results |>
+  mutate(
+    uncertainty_bin = case_when(
+      uncertainty < 0.25 ~ "Low\n(< 0.25)",
+      uncertainty < 0.50 ~ "Medium\n(0.25-0.50)",
+      TRUE ~ "High\n(≥ 0.50)"
+    ) |>
+      factor(levels = c("Low\n(< 0.25)", "Medium\n(0.25-0.50)", "High\n(≥ 0.50)"))
+  ) |>
+  count(uncertainty_bin, error) |>
+  group_by(uncertainty_bin) |>
+  mutate(
+    total = sum(n),
+    prop = n / total,
+    error_label = ifelse(error, "Error", "Correct")
+  )
+
+plot_data |>
+  ggplot2::ggplot(ggplot2::aes(uncertainty_bin, prop, fill = error_label)) +
+  ggplot2::geom_col(position = "stack", width = 0.7, alpha = 0.9) +
+  ggplot2::scale_fill_manual(
+    values = c("Correct" = "#4ade80", "Error" = "#f87171"),
+    name = ""
+  ) +
+  ggplot2::scale_y_continuous(
+    labels = scales::percent_format(),
+    expand = c(0, 0)
+  ) +
+  ggplot2::labs(
+    title = "LLM uncertainty predicts classification errors",
+    subtitle = glue::glue("Higher uncertainty → higher error rates (r = {round(correlation, 3)})"),
+    x = "LLM uncertainty",
+    y = "Proportion of cases"
+  ) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(
+    plot.background = ggplot2::element_rect(fill = "#000", color = NA),
+    panel.background = ggplot2::element_rect(fill = "#000", color = NA),
+    panel.grid = ggplot2::element_line(color = "#404040", linewidth = 0.3),
+    panel.grid.minor = ggplot2::element_blank(),
+    text = ggplot2::element_text(color = "#e5e5e5", family = "Arial"),
+    plot.title = ggplot2::element_text(size = 16, face = "bold", margin = ggplot2::margin(b = 5)),
+    plot.subtitle = ggplot2::element_text(size = 12, color = "#a5a5a5"),
+    axis.text = ggplot2::element_text(color = "#e5e5e5", size = 11),
+    axis.title = ggplot2::element_text(color = "#e5e5e5", size = 12),
+    legend.text = ggplot2::element_text(size = 11),
+    legend.position = "top"
+  )
 ```
 
 ## Crimes
@@ -423,7 +426,8 @@ type_crime <- type_object(
     c("violent", "property", "drug", "dui offense", 
       "public order", "criminal traffic", "not known/missing"),
     "If violent and another type clearly applies, choose violent,
-     but only if intent to harm or injure is clearly present."
+     but only if intent to harm or injure is clearly present.
+     Threats, harassment, stalking, and similar are all violent."
   ),
   uncertainty = type_number(
     "Your uncertainty in the classification responses and scores,
@@ -440,17 +444,113 @@ Data source: [Pennsylvania Courts](http://www.pacourts.us), *n* = 1,537
 ```{r}
 #| echo: true
 crimes <- read.csv("cls_offense/crimes.csv")
-oai_dat <- parallel_chat_structured(
+oai_dat <- parallel_chat_structured( # use batch_chat() to save 50%
   chat,
   prompts = as.list(crimes$description),
   type = type_crime,
   include_cost = TRUE
 )
-mean(1 - oai_dat$uncertainty)
+mean(oai_dat$uncertainty)
 sum(oai_dat$cost)
 ```
 
-Agreement with [ML tool](https://cjars-toc.isr.umich.edu): 81%
+Agreement with [ML tool](https://cjars-toc.isr.umich.edu): 82%
+
+## Crimes
+
+::: {style="font-size: 0.7em;"}
+```{r}
+#| echo: false
+toc <- openxlsx::readWorkbook("cls_offense/cjars_toc.xlsx", sheet = 2)
+toc_uccs <- openxlsx::readWorkbook("cls_offense/cjars_toc.xlsx", sheet = 3)
+
+oai_dat <- utils::read.csv("cls_offense/oai_dat.csv") |>
+  dplyr::select(-harm_score, -action_type) |>
+  dplyr::relocate(description)
+
+toc_processed <- toc |>
+  dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, 3))) |>
+  dplyr::left_join(toc_uccs, by = "uccs_code") |>
+  dplyr::mutate(
+    description = stringr::str_squish(description),
+    charge_desc = tolower(charge_desc),
+    offense_type_desc = tolower(offense_type_desc)
+  ) |>
+  dplyr::select(description, toc_offense_category = charge_desc, 
+                toc_offense_type = offense_type_desc, toc_confidence = probability)
+
+oai_processed <- oai_dat |>
+  dplyr::mutate(description = stringr::str_squish(description)) |>
+  dplyr::select(description,
+                openai_offense_category = offense_category,
+                openai_offense_type = offense_type, 
+                llm_uncertainty = uncertainty_score)
+
+combined_data <- toc_processed |>
+  dplyr::left_join(oai_processed, by = "description") |>
+  dplyr::mutate(
+    toc_uncertainty = 1 - toc_confidence,
+    classification_agreement = toc_offense_type == openai_offense_type,
+    is_animal_cruelty = stringr::str_detect(tolower(description), "cruelty")
+  ) |>
+  dplyr::filter(!is.na(toc_uncertainty), !is.na(llm_uncertainty))
+
+uncertainty_cor <- cor(combined_data$toc_uncertainty, 
+                       combined_data$llm_uncertainty, 
+                       method = "spearman")
+classification_agreement_rate <- mean(combined_data$classification_agreement, na.rm = TRUE)
+
+animal_cases <- combined_data |>
+  dplyr::filter(is_animal_cruelty) |>
+  dplyr::mutate(
+    toc_says_violent = toc_offense_type == "violent",
+    llm_says_violent = openai_offense_type == "violent",
+    systematic_error = !toc_says_violent & llm_says_violent
+  )
+
+animal_cases |>
+  dplyr::filter(systematic_error) |>
+  dplyr::select(description, toc_offense_type, openai_offense_type, 
+                toc_confidence, llm_uncertainty) |>
+  head(2) |>
+  knitr::kable(
+    col.names = c("Description", "ML Tool", "LLM", "ML Confidence", "LLM Uncertainty"),
+    caption = "ML tool misclassifies animal cruelty as non-violent"
+  )
+```
+:::
+
+::: {.fragment .zoom-in style="text-align: center;"}
+High confidence ≠ correct classification
+:::
+
+## Crimes
+
+```{r}
+#| echo: false
+combined_data |>
+  ggplot2::ggplot(ggplot2::aes(toc_uncertainty, llm_uncertainty)) +
+  ggplot2::geom_point(alpha = 0.6, color = "#4ade80") +
+  ggplot2::geom_smooth(method = "lm", se = FALSE, color = "#f87171") +
+  ggplot2::labs(
+    title = "Cross-model uncertainty validation",
+    subtitle = glue::glue("82% classification agreement, r = {round(uncertainty_cor, 3)} uncertainty correlation"),
+    x = "ML tool uncertainty (1 - probability)",
+    y = "LLM uncertainty"
+  ) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(
+    plot.background = ggplot2::element_rect(fill = "#000", color = NA),
+    panel.background = ggplot2::element_rect(fill = "#000", color = NA),
+    panel.grid = ggplot2::element_line(color = "#404040", linewidth = 0.3),
+    panel.grid.minor = ggplot2::element_blank(),
+    text = ggplot2::element_text(color = "#e5e5e5", family = "Arial"),
+    plot.title = ggplot2::element_text(size = 16, face = "bold"),
+    plot.subtitle = ggplot2::element_text(size = 12, color = "#a5a5a5"),
+    axis.text = ggplot2::element_text(color = "#e5e5e5", size = 11),
+    axis.title = ggplot2::element_text(color = "#e5e5e5", size = 12)
+  )
+```
 
 ## Advanced workflows
 ::::: columns
@@ -485,12 +585,12 @@ Agreement with [ML tool](https://cjars-toc.isr.umich.edu): 81%
 ## What's the catch?
 
 ::: {.incremental}
--   Frontier models are a "black box" 
+-   Frontier models are a **black box**
     -   Billions of parameters obscure behaviors
     -   Unknown/proprietary training datasets
     -   Unknown/secretive training and fine-tuning methods
 -   Local, open-source models often perform poorly
--   LLMs are non-deterministic (not always consistent)
+-   LLMs are **non-deterministic** (not always consistent)
 :::
 
 ## LLM reliability
@@ -531,17 +631,11 @@ chat$chat("Tell a joke")
 
 ## Takeaways
 
-LLMs are:
-
 ::: {.incremental}
--   Good at **extraction** and **classification**
--   Complimentary to traditional ML (not better than)
--   Best used with caution and for exploration
--   Cheap but the cost is not trivial
--   **Bonus**: To save costs, use ellmer's [`batch_chat()`](https://ellmer.tidyverse.org/reference/batch_chat.html):
-    -   OpenAI
-    -   Anthropic
--   
+-   LLMs are accessible tools for **extraction** and **classification**, but be careful
+-   Use minimal prompting that focuses on **structure** and **task limitations**
+-   Use **uncertainty** scores to guide human review
+-   Use LLMs to **develop** and **validate** existing tools
 :::
 
 ## Thank you!

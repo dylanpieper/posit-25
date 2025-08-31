@@ -309,24 +309,9 @@ Dylan Pieper<br>Data &amp; Social Scientist
 </div><div class="column" style="width:40%;">
 <h3 class="fragment fade-in-then-semi-out" id="traditional-ml-requires-lots-of-data-for-training-and-testing">Traditional ML requires lots of data for training and testing</h3>
 <div class="fragment fade-up">
-<p>But it does encourage us to examine our data and the accuracy of our predictions</p>
+<p>But it encourages us to examine the accuracy and uncertainty of our predictions</p>
 </div>
 </div></div>
-<!-- ## Traditional classification (cont'd) -->
-<!-- ```{r} -->
-<!-- library(tidymodels) -->
-<!-- iris_classifier <- readRDS("cls_iris/iris_cls_workflow.rds") -->
-<!-- new_examples <- tibble( -->
-<!--   Sepal.Length = c(5.1, 6.2, 7.3, 4.8, 5.9), -->
-<!--   Sepal.Width = c(3.5, 2.9, 2.8, 3.0, 3.2), -->
-<!--   Petal.Length = c(1.4, 4.3, 6.3, 1.6, 4.8), -->
-<!--   Petal.Width = c(0.2, 1.3, 1.8, 0.2, 1.8) -->
-<!-- ) -->
-<!-- iris_classifier |> -->
-<!--   predict(new_data = new_examples) |> -->
-<!--   bind_cols(iris_classifier %>% predict(new_data = new_examples, type = "prob")) |> -->
-<!--   bind_cols(new_examples) -->
-<!-- ``` -->
 </section>
 <section id="what-well-cover-today" class="slide level2">
 <h2>What we’ll cover today</h2>
@@ -342,41 +327,17 @@ Dylan Pieper<br>Data &amp; Social Scientist
 </div>
 <div class="fragment fade-up">
 <ul>
-<li>Flowers</li>
-<li>Political speeches</li>
-<li>Health symptoms</li>
-<li>Crimes</li>
+<li><strong>Iris flowers</strong> → prompting<br>
+</li>
+<li><strong>Health symptoms</strong> → uncertainty</li>
+<li><strong>Crimes</strong> → validation</li>
 </ul>
 </div>
 </div></div>
 </section>
-<section id="setting-up-llms-with-ellmer" class="slide level2">
-<h2>Setting up LLMs with ellmer</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
-<div class="fragment zoom-in" data-fragment-index="1" style="text-align: center;">
-<p><img data-src="images/anthropic_key.jpg" alt="Anthropic API key"> Source: <a href="https://www.merge.dev/blog/anthropic-api-key">Merge.dev</a></p>
-</div>
-</div><div class="column" style="width:40%;">
-<div class="fragment fade-up" data-fragment-index="2">
-<ol type="1">
-<li class="fragment">Select provider (Anthropic, OpenAI, Google, etc.)</li>
-<li class="fragment">Create account, add funds, and get API key</li>
-<li class="fragment">Add key to R environment <code>usethis::edit_r_environ()</code> with <code>ANTHROPIC_API_KEY = "your_key"</code></li>
-</ol>
-</div>
-</div></div>
-</section>
-<section id="select-model" class="slide level2">
-<h2>Select model</h2>
-<div class="fragment fade-up" style="text-align: center;">
-<p><img data-src="images/anthropic_models.png" alt="Anthropic model names"></p>
-<p>Source: <a href="https://docs.anthropic.com/en/docs/about-claude/models/overview">docs.anthropic.com</a></p>
-</div>
-</section>
 <section id="getting-started-with-ellmer" class="slide level2">
 <h2>Getting started with ellmer</h2>
-<p><img data-src="images/versicolor.jpg" style="height: 150px;" alt="Iris versicolor flower"></p>
+<p><img data-src="images/versicolor.jpg" style="height: 150px;" alt="Iris versicolor flower"> Iris versicolor</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"anthropic/claude-sonnet-4-20250514"</span>)</span>
 <span id="cb1-2"><a href=""></a>type_flower <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
@@ -385,19 +346,20 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <span id="cb1-5"><a href=""></a>  <span class="at">features =</span> <span class="fu">type_string</span>(<span class="st">"Focus on morphology"</span>),</span>
 <span id="cb1-6"><a href=""></a>)</span>
 <span id="cb1-7"><a href=""></a><span class="fu">str</span>(chat<span class="sc">$</span><span class="fu">chat_structured</span>(</span>
-<span id="cb1-8"><a href=""></a>  <span class="fu">content_image_file</span>(<span class="st">"images/versicolor.jpg"</span>), <span class="at">type =</span> type_flower</span>
-<span id="cb1-9"><a href=""></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href=""></a>  <span class="fu">content_image_file</span>(<span class="st">"images/versicolor.jpg"</span>), <span class="co"># or content_pdf_file(), or text</span></span>
+<span id="cb1-9"><a href=""></a>  <span class="at">type =</span> type_flower</span>
+<span id="cb1-10"><a href=""></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 3
  $ genus   : chr "Iris"
  $ species : chr "versicolor"
- $ features: chr "Purple-blue flowers with three large drooping sepals (falls) and three upright petals (standards). Falls have y"| __truncated__</code></pre>
+ $ features: chr "Deep purple-blue flowers with three upright petals (standards) and three drooping petals (falls) with yellow ma"| __truncated__</code></pre>
 </div>
 </div>
 </section>
 <section id="getting-better-with-ellmer" class="slide level2">
 <h2>Getting better with ellmer</h2>
-<p><img data-src="images/versicolor.jpg" style="height: 150px;" alt="Iris versicolor flower"></p>
+<p><img data-src="images/versicolor.jpg" style="height: 150px;" alt="Iris versicolor flower"> Iris versicolor</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>prob <span class="ot">&lt;-</span> <span class="st">"Probability (0.00-1.00) Iris is {{species}}"</span></span>
 <span id="cb3-2"><a href=""></a>type_flower <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
@@ -413,8 +375,8 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <pre><code>List of 4
  $ species        : chr "versicolor"
  $ prob_setosa    : num 0.05
- $ prob_virginica : num 0.1
- $ prob_versicolor: num 0.85</code></pre>
+ $ prob_virginica : num 0.15
+ $ prob_versicolor: num 0.8</code></pre>
 </div>
 </div>
 </section>
@@ -433,9 +395,9 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <span id="cb5-9"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     species prob_setosa prob_virginica prob_versicolor
-1 versicolor        0.05           0.05            0.90
-2 versicolor        0.05           0.10            0.85
-3 versicolor        0.05           0.10            0.85</code></pre>
+1 versicolor        0.05            0.1            0.85
+2 versicolor        0.05            0.1            0.85
+3 versicolor        0.05            0.1            0.85</code></pre>
 </div>
 </div>
 </section>
@@ -461,59 +423,34 @@ Dylan Pieper<br>Data &amp; Social Scientist
 </div>
 </div>
 </section>
-<section id="inaugural-speeches" class="slide level2">
-<h2>Inaugural speeches</h2>
-<div class="quarto-layout-panel" data-layout="[100, 50]">
-<div class="quarto-layout-row">
-<div class="fragment zoom-in quarto-layout-cell" style="flex-basis: 66.7%;justify-content: center;">
-<p><img data-src="images/inaugural_web.png" style="height: 500px;" alt="Trump (2025) inaugural speech webpage"></p>
+<section id="prompting-philosophy" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Prompting philosophy</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 class="fragment fade-up" id="less-is-more">Less is more</h3>
+<div class="fragment fade-up">
+<p>✅ <strong>Focus on</strong></p>
+<ul>
+<li>Clear structure</li>
+<li>Task limitations</li>
+</ul>
 </div>
-<div class="fragment zoom-in quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img data-src="images/inaugural_files.png" alt="Trump (2025) inaugural speech webpage"></p>
+<div class="fragment fade-up">
+<p>✅ <strong>Handle edge cases</strong></p>
+<ul>
+<li>What if multiple categories fit?</li>
+<li>When to express uncertainty?</li>
+</ul>
 </div>
+</div><div class="column" style="width:50%;">
+<div class="fragment fade-up">
+<h3 class="text-center" id="evidence">Evidence</h3>
+<blockquote>
+<p>“There was no need to provide those carefully crafted 20,000 tokens of context and, worse than that, doing so actually <em>hurt</em> performance.”</p>
+</blockquote>
+<p><a href="https://www.simonpcouch.com/blog/2025-08-26-predictive/">Simon Couch (2025)</a></p>
 </div>
-</div>
-</section>
-<section id="inaugural-speeches-1" class="slide level2">
-<h2>Inaugural speeches</h2>
-<p><img data-src="images/2013_obama.jpg" style="height: 150px;" alt="Obama (2013) inaugural speech"> <img data-src="images/2017_trump.jpg" style="height: 150px;" alt="Trump (2017) inaugural speech"> <img data-src="images/2021_biden.jpg" style="height: 150px;" alt="Biden (2021) inaugural speech"> <img data-src="images/2025_trump.jpg" style="height: 150px;" alt="Trump (2025) inaugural speech"></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1"</span>)</span>
-<span id="cb9-2"><a href=""></a>main <span class="ot">&lt;-</span> <span class="st">"The most prominent political {{thing}} (1-2 lowercase words)"</span></span>
-<span id="cb9-3"><a href=""></a>type_politics <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
-<span id="cb9-4"><a href=""></a>  <span class="at">president   =</span> <span class="fu">type_string</span>(<span class="st">"Last name"</span>),</span>
-<span id="cb9-5"><a href=""></a>  <span class="at">year        =</span> <span class="fu">type_integer</span>(),</span>
-<span id="cb9-6"><a href=""></a>  <span class="at">leadership  =</span> <span class="fu">type_enum</span>(<span class="fu">c</span>(<span class="st">"democratic"</span>, <span class="st">"autocratic"</span>, <span class="st">"laissez-faire"</span>)),</span>
-<span id="cb9-7"><a href=""></a>  <span class="at">main_theme  =</span> <span class="fu">type_string</span>(<span class="fu">interpolate</span>(main, <span class="at">thing =</span> <span class="st">"theme"</span>)),</span>
-<span id="cb9-8"><a href=""></a>  <span class="at">main_issue  =</span> <span class="fu">type_string</span>(<span class="fu">interpolate</span>(main, <span class="at">thing =</span> <span class="st">"issue"</span>)),</span>
-<span id="cb9-9"><a href=""></a>  <span class="at">main_threat =</span> <span class="fu">type_string</span>(<span class="fu">interpolate</span>(main, <span class="at">thing =</span> <span class="st">"threat"</span>))</span>
-<span id="cb9-10"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="inaugural-speeches-2" class="slide level2">
-<h2>Inaugural speeches</h2>
-<p><img data-src="images/2013_obama.jpg" style="height: 120px;" alt="Obama (2013) inaugural speech"> <img data-src="images/2017_trump.jpg" style="height: 120px;" alt="Trump (2017) inaugural speech"> <img data-src="images/2021_biden.jpg" style="height: 120px;" alt="Biden (2021) inaugural speech"> <img data-src="images/2025_trump.jpg" style="height: 120px;" alt="Trump (2025) inaugural speech"></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">parallel_chat_structured</span>(</span>
-<span id="cb10-2"><a href=""></a>  chat,</span>
-<span id="cb10-3"><a href=""></a>  <span class="at">prompts =</span> <span class="fu">list.files</span>(<span class="st">"cls_speeches"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href=""></a>              purrr<span class="sc">::</span><span class="fu">map</span>(content_pdf_file),</span>
-<span id="cb10-5"><a href=""></a>  <span class="at">type =</span> type_politics,</span>
-<span id="cb10-6"><a href=""></a>  <span class="at">include_cost =</span> <span class="cn">TRUE</span></span>
-<span id="cb10-7"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  president year leadership  main_theme        main_issue          main_threat
-1     Obama 2013 democratic       unity economic recovery           inequality
-2     Trump 2017 autocratic nationalism  economic decline        globalization
-3     Biden 2021 democratic       unity pandemic recovery  political extremism
-4     Trump 2025 autocratic nationalism       immigration foreign interference
-   cost
-1 $0.01
-2 $0.01
-3 $0.01
-4 $0.01</code></pre>
-</div>
-</div>
+</div></div>
 </section>
 <section id="health-symptoms" class="slide level2">
 <h2>Health symptoms</h2>
@@ -535,47 +472,50 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <h2>Health symptoms</h2>
 <p>Data source: <a href="https://www.kaggle.com/datasets/niyarrbarman/symptom2disease/data">Kaggle</a>, public domain, <em>n</em> = 1,200</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>symptoms <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"cls_health/Symptom2Disease.csv"</span>)</span>
-<span id="cb12-2"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1"</span>)</span>
-<span id="cb12-3"><a href=""></a>type_health <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
-<span id="cb12-4"><a href=""></a>  <span class="at">diagnosis   =</span> <span class="fu">type_enum</span>(<span class="fu">unique</span>(symptoms<span class="sc">$</span>label)),</span>
-<span id="cb12-5"><a href=""></a>  <span class="at">uncertainty =</span> <span class="fu">type_number</span>(<span class="st">"Err on the side of caution, and</span></span>
-<span id="cb12-6"><a href=""></a><span class="st">                             provide a score (0.00-1.00) of</span></span>
-<span id="cb12-7"><a href=""></a><span class="st">                             uncertainty in your diagnosis."</span>)</span>
-<span id="cb12-8"><a href=""></a>)</span>
-<span id="cb12-9"><a href=""></a><span class="fu">unique</span>(symptoms<span class="sc">$</span>label) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>symptoms <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"cls_health/Symptom2Disease.csv"</span>)</span>
+<span id="cb9-2"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1"</span>)</span>
+<span id="cb9-3"><a href=""></a>type_health <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
+<span id="cb9-4"><a href=""></a>  <span class="at">diagnosis   =</span> <span class="fu">type_enum</span>(<span class="fu">unique</span>(symptoms<span class="sc">$</span>label)), <span class="co"># n = 24</span></span>
+<span id="cb9-5"><a href=""></a>  <span class="at">uncertainty =</span> <span class="fu">type_number</span>(<span class="st">"Err on the side of caution, and</span></span>
+<span id="cb9-6"><a href=""></a><span class="st">                             provide a score (0.00-1.00) of</span></span>
+<span id="cb9-7"><a href=""></a><span class="st">                             uncertainty in your diagnosis."</span>)</span>
+<span id="cb9-8"><a href=""></a>)</span>
+<span id="cb9-9"><a href=""></a><span class="fu">unique</span>(symptoms<span class="sc">$</span>label) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Psoriasis"             "Varicose Veins"        "Typhoid"              
  [4] "Chicken pox"           "Impetigo"              "Dengue"               
  [7] "Fungal infection"      "Common Cold"           "Pneumonia"            
-[10] "Dimorphic Hemorrhoids" "Arthritis"             "Acne"                 
-[13] "Bronchial Asthma"      "Hypertension"          "Migraine"             </code></pre>
+[10] "Dimorphic Hemorrhoids" "Arthritis"             "Acne"                 </code></pre>
 </div>
 </div>
 </section>
 <section id="health-symptoms-2" class="slide level2">
 <h2>Health symptoms</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>oai_dat <span class="ot">&lt;-</span> <span class="fu">parallel_chat_structured</span>(</span>
-<span id="cb14-2"><a href=""></a>  chat,</span>
-<span id="cb14-3"><a href=""></a>  <span class="at">prompts =</span> <span class="fu">as.list</span>(symptoms<span class="sc">$</span>text),</span>
-<span id="cb14-4"><a href=""></a>  <span class="at">type =</span> type_health,</span>
-<span id="cb14-5"><a href=""></a>  <span class="at">include_cost =</span> <span class="cn">TRUE</span></span>
-<span id="cb14-6"><a href=""></a>)</span>
-<span id="cb14-7"><a href=""></a><span class="fu">mean</span>(oai_dat<span class="sc">$</span>diagnosis <span class="sc">==</span> symptoms<span class="sc">$</span>label)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>oai_dat <span class="ot">&lt;-</span> <span class="fu">parallel_chat_structured</span>(</span>
+<span id="cb11-2"><a href=""></a>  chat,</span>
+<span id="cb11-3"><a href=""></a>  <span class="at">prompts =</span> <span class="fu">as.list</span>(symptoms<span class="sc">$</span>text),</span>
+<span id="cb11-4"><a href=""></a>  <span class="at">type =</span> type_health,</span>
+<span id="cb11-5"><a href=""></a>  <span class="at">include_cost =</span> <span class="cn">TRUE</span></span>
+<span id="cb11-6"><a href=""></a>)</span>
+<span id="cb11-7"><a href=""></a><span class="fu">mean</span>(oai_dat<span class="sc">$</span>diagnosis <span class="sc">==</span> symptoms<span class="sc">$</span>label)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.66</code></pre>
+<pre><code>[1] 0.6641667</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">mean</span>(<span class="dv">1</span> <span class="sc">-</span> oai_dat<span class="sc">$</span>uncertainty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">mean</span>(oai_dat<span class="sc">$</span>uncertainty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7262417</code></pre>
+<pre><code>[1] 0.2749083</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">sum</span>(oai_dat<span class="sc">$</span>cost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">sum</span>(oai_dat<span class="sc">$</span>cost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.702864</code></pre>
+<pre><code>[1] 0.703</code></pre>
 </div>
 </div>
 </section>
+<section id="health-symptoms-3" class="slide level2">
+<h2>Health symptoms</h2>
+
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
 <section id="crimes" class="slide level2">
 <h2>Crimes</h2>
 <div class="columns">
@@ -597,44 +537,96 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <h2>Crimes</h2>
 <p>Schema source: <a href="https://www.science.org/doi/10.1126/sciadv.abq8123">Uniform Crime Classification Standard</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1"</span>)</span>
-<span id="cb20-2"><a href=""></a>type_crime <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
-<span id="cb20-3"><a href=""></a>  <span class="at">crime_type =</span> <span class="fu">type_enum</span>(</span>
-<span id="cb20-4"><a href=""></a>    <span class="fu">c</span>(<span class="st">"violent"</span>, <span class="st">"property"</span>, <span class="st">"drug"</span>, <span class="st">"dui offense"</span>, </span>
-<span id="cb20-5"><a href=""></a>      <span class="st">"public order"</span>, <span class="st">"criminal traffic"</span>, <span class="st">"not known/missing"</span>),</span>
-<span id="cb20-6"><a href=""></a>    <span class="st">"If violent and another type clearly applies, choose violent,</span></span>
-<span id="cb20-7"><a href=""></a><span class="st">     but only if intent to harm or injure is clearly present."</span></span>
-<span id="cb20-8"><a href=""></a>  ),</span>
-<span id="cb20-9"><a href=""></a>  <span class="at">uncertainty =</span> <span class="fu">type_number</span>(</span>
-<span id="cb20-10"><a href=""></a>    <span class="st">"Your uncertainty in the classification responses and scores,</span></span>
-<span id="cb20-11"><a href=""></a><span class="st">     higher scores reflect unclear or difficult to classify descriptions,</span></span>
-<span id="cb20-12"><a href=""></a><span class="st">     ranging from 0.0 to 1.0."</span></span>
-<span id="cb20-13"><a href=""></a>  )</span>
-<span id="cb20-14"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1"</span>)</span>
+<span id="cb17-2"><a href=""></a>type_crime <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
+<span id="cb17-3"><a href=""></a>  <span class="at">crime_type =</span> <span class="fu">type_enum</span>(</span>
+<span id="cb17-4"><a href=""></a>    <span class="fu">c</span>(<span class="st">"violent"</span>, <span class="st">"property"</span>, <span class="st">"drug"</span>, <span class="st">"dui offense"</span>, </span>
+<span id="cb17-5"><a href=""></a>      <span class="st">"public order"</span>, <span class="st">"criminal traffic"</span>, <span class="st">"not known/missing"</span>),</span>
+<span id="cb17-6"><a href=""></a>    <span class="st">"If violent and another type clearly applies, choose violent,</span></span>
+<span id="cb17-7"><a href=""></a><span class="st">     but only if intent to harm or injure is clearly present.</span></span>
+<span id="cb17-8"><a href=""></a><span class="st">     Threats, harassment, stalking, and similar are all violent."</span></span>
+<span id="cb17-9"><a href=""></a>  ),</span>
+<span id="cb17-10"><a href=""></a>  <span class="at">uncertainty =</span> <span class="fu">type_number</span>(</span>
+<span id="cb17-11"><a href=""></a>    <span class="st">"Your uncertainty in the classification responses and scores,</span></span>
+<span id="cb17-12"><a href=""></a><span class="st">     higher scores reflect unclear or difficult to classify descriptions,</span></span>
+<span id="cb17-13"><a href=""></a><span class="st">     ranging from 0.0 to 1.0."</span></span>
+<span id="cb17-14"><a href=""></a>  )</span>
+<span id="cb17-15"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="crimes-2" class="slide level2">
 <h2>Crimes</h2>
 <p>Data source: <a href="http://www.pacourts.us">Pennsylvania Courts</a>, <em>n</em> = 1,537</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>crimes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"cls_offense/crimes.csv"</span>)</span>
-<span id="cb21-2"><a href=""></a>oai_dat <span class="ot">&lt;-</span> <span class="fu">parallel_chat_structured</span>(</span>
-<span id="cb21-3"><a href=""></a>  chat,</span>
-<span id="cb21-4"><a href=""></a>  <span class="at">prompts =</span> <span class="fu">as.list</span>(crimes<span class="sc">$</span>description),</span>
-<span id="cb21-5"><a href=""></a>  <span class="at">type =</span> type_crime,</span>
-<span id="cb21-6"><a href=""></a>  <span class="at">include_cost =</span> <span class="cn">TRUE</span></span>
-<span id="cb21-7"><a href=""></a>)</span>
-<span id="cb21-8"><a href=""></a><span class="fu">mean</span>(<span class="dv">1</span> <span class="sc">-</span> oai_dat<span class="sc">$</span>uncertainty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>crimes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"cls_offense/crimes.csv"</span>)</span>
+<span id="cb18-2"><a href=""></a>oai_dat <span class="ot">&lt;-</span> <span class="fu">parallel_chat_structured</span>( <span class="co"># use batch_chat() to save 50%</span></span>
+<span id="cb18-3"><a href=""></a>  chat,</span>
+<span id="cb18-4"><a href=""></a>  <span class="at">prompts =</span> <span class="fu">as.list</span>(crimes<span class="sc">$</span>description),</span>
+<span id="cb18-5"><a href=""></a>  <span class="at">type =</span> type_crime,</span>
+<span id="cb18-6"><a href=""></a>  <span class="at">include_cost =</span> <span class="cn">TRUE</span></span>
+<span id="cb18-7"><a href=""></a>)</span>
+<span id="cb18-8"><a href=""></a><span class="fu">mean</span>(oai_dat<span class="sc">$</span>uncertainty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8703904</code></pre>
+<pre><code>[1] 0.1222707</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">sum</span>(oai_dat<span class="sc">$</span>cost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">sum</span>(oai_dat<span class="sc">$</span>cost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.634308</code></pre>
+<pre><code>[1] 0.679914</code></pre>
 </div>
 </div>
-<p>Agreement with <a href="https://cjars-toc.isr.umich.edu">ML tool</a>: 81%</p>
+<p>Agreement with <a href="https://cjars-toc.isr.umich.edu">ML tool</a>: 82%</p>
 </section>
+<section id="crimes-3" class="slide level2">
+<h2>Crimes</h2>
+<div style="font-size: 0.7em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" style="width:100%;">
+<caption>ML tool misclassifies animal cruelty as non-violent</caption>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 12%">
+<col style="width: 7%">
+<col style="width: 13%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">ML Tool</th>
+<th style="text-align: left;">LLM</th>
+<th style="text-align: right;">ML Confidence</th>
+<th style="text-align: right;">LLM Uncertainty</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Aggravated Cruelty to Animals - Causing SBI or Death</td>
+<td style="text-align: left;">public order</td>
+<td style="text-align: left;">violent</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aggravated Cruelty to Animals - Torture</td>
+<td style="text-align: left;">public order</td>
+<td style="text-align: left;">violent</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.05</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="fragment zoom-in" style="text-align: center;">
+<p>High confidence ≠ correct classification</p>
+</div>
+</section>
+<section id="crimes-4" class="slide level2">
+<h2>Crimes</h2>
+
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
 <section id="advanced-workflows" class="slide level2">
 <h2>Advanced workflows</h2>
 <div class="columns">
@@ -662,14 +654,14 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <section id="whats-the-catch" class="slide level2">
 <h2>What’s the catch?</h2>
 <ul>
-<li class="fragment">Frontier models are a “black box”
+<li class="fragment">Frontier models are a <strong>black box</strong>
 <ul>
 <li class="fragment">Billions of parameters obscure behaviors</li>
 <li class="fragment">Unknown/proprietary training datasets</li>
 <li class="fragment">Unknown/secretive training and fine-tuning methods</li>
 </ul></li>
 <li class="fragment">Local, open-source models often perform poorly</li>
-<li class="fragment">LLMs are non-deterministic (not always consistent)</li>
+<li class="fragment">LLMs are <strong>non-deterministic</strong> (not always consistent)</li>
 </ul>
 </section>
 <section id="llm-reliability" class="slide level2">
@@ -679,12 +671,12 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <div class="fragment fade-up" data-fragment-index="1">
 <h3 id="first-run">First Run</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1"</span>)</span>
-<span id="cb25-2"><a href=""></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Tell a joke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1"</span>)</span>
+<span id="cb22-2"><a href=""></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Tell a joke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Why did the scarecrow win an award?
 
-Because he was outstanding in his field! 🌾😄</code></pre>
+Because he was outstanding in his field!</code></pre>
 </div>
 </div>
 </div>
@@ -692,14 +684,12 @@ Because he was outstanding in his field! 🌾😄</code></pre>
 <div class="fragment fade-up" data-fragment-index="2">
 <h3 id="second-run">Second Run</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1"</span>)</span>
-<span id="cb27-2"><a href=""></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Tell a joke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1"</span>)</span>
+<span id="cb24-2"><a href=""></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Tell a joke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Sure! Here you go:
+<pre><code>Why don’t skeletons fight each other?
 
-Why did the scarecrow win an award?
-
-Because he was outstanding in his field!</code></pre>
+They don’t have the guts!</code></pre>
 </div>
 </div>
 </div>
@@ -712,18 +702,11 @@ Because he was outstanding in his field!</code></pre>
 </section>
 <section id="takeaways" class="slide level2">
 <h2>Takeaways</h2>
-<p>LLMs are:</p>
 <ul>
-<li class="fragment">Good at <strong>extraction</strong> and <strong>classification</strong></li>
-<li class="fragment">Complimentary to traditional ML (not better than)</li>
-<li class="fragment">Best used with caution and for exploration</li>
-<li class="fragment">Cheap but the cost is not trivial</li>
-<li class="fragment"><strong>Bonus</strong>: To save costs, use ellmer’s <a href="https://ellmer.tidyverse.org/reference/batch_chat.html"><code>batch_chat()</code></a>:
-<ul>
-<li class="fragment">OpenAI</li>
-<li class="fragment">Anthropic</li>
-</ul></li>
-<li class="fragment"></li>
+<li class="fragment">LLMs are accessible tools for <strong>extraction</strong> and <strong>classification</strong>, but be careful</li>
+<li class="fragment">Use minimal prompting that focuses on <strong>structure</strong> and <strong>task limitations</strong></li>
+<li class="fragment">Use <strong>uncertainty</strong> scores to guide human review</li>
+<li class="fragment">Use LLMs to <strong>develop</strong> and <strong>validate</strong> existing tools</li>
 </ul>
 </section>
 <section id="thank-you" class="slide level2">
@@ -744,7 +727,7 @@ Because he was outstanding in his field!</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="384"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center" width="384"></p>
 </figure>
 </div>
 </div>

@@ -1,4 +1,3 @@
-# pak::pak("kbenoit/ellmer@fix/628-robust-parallel_chat_structured")
 library(ellmer)
 
 # load criminal offense descriptions across three PA counties
@@ -19,7 +18,7 @@ toc_offense_type <- toc |>
   dplyr::pull(offense_type_desc)
 
 # create ellmer chat object
-chat <- chat("openai/gpt-5-mini-2025-08-07",
+chat <- chat("openai/gpt-4.1",
   system_prompt = "You are classifying criminal offense descriptions"
 )
 
@@ -35,7 +34,8 @@ schema <- type_object(
     toc_offense_type,
     "The primary crime type.
     If violent and another type clearly applies, choose violent,
-    but only if intent to harm or injure is clearly present."
+    but only if intent to harm or injure is clearly present.
+    Threats, harassment, stalking, and similar are all violent."
   ),
   # harm level and type (UK's Office for National Statistics)
   harm_level = type_enum(
@@ -80,20 +80,17 @@ schema <- type_object(
   )
 )
 
-oai_dat <- parallel_chat_structured_robust(
+oai_dat <- parallel_chat_structured(
   chat,
   prompts = as.list(crimes$description),
-  type = schema,
-  include_status = TRUE,
-  on_error = "continue"
+  type = schema
 )
 
 utils::write.csv(
   oai_dat |>
     dplyr::mutate(
       description = crimes |> dplyr::pull(description)
-    ) |>
-    dplyr::select(-status),
+    ),
   "cls_offense/oai_dat.csv",
   row.names = FALSE
 )
