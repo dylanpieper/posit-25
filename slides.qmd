@@ -332,26 +332,87 @@ sum(oai_dat$cost)
 
 ```{r}
 #| echo: false
-results <- tibble::tibble(
+accuracy_by_diagnosis <- tibble::tibble(
+  true_label = symptoms$label,
+  predicted = oai_dat$diagnosis
+) |>
+  dplyr::mutate(correct = true_label == predicted) |>
+  dplyr::group_by(true_label) |>
+  dplyr::summarise(
+    n_cases = dplyr::n(),
+    n_correct = sum(correct),
+    accuracy = n_correct / n_cases,
+    .groups = "drop"
+  ) |>
+  dplyr::arrange(accuracy) |>
+  dplyr::mutate(
+    diagnosis = stringr::str_to_title(stringr::str_replace_all(true_label, "_", " ")),
+    diagnosis = forcats::fct_reorder(diagnosis, accuracy)
+  )
+
+accuracy_by_diagnosis |>
+  ggplot2::ggplot(ggplot2::aes(accuracy, diagnosis, fill = accuracy)) +
+  ggplot2::geom_col(alpha = 0.9, width = 0.7) +
+  ggplot2::geom_text(
+    ggplot2::aes(label = scales::percent(accuracy, accuracy = 1)),
+    hjust = -0.1, 
+    color = "#e5e5e5", 
+    size = 3.5
+  ) +
+  ggplot2::scale_fill_gradient(
+    low = "#f87171", 
+    high = "#4ade80",
+    guide = "none"
+  ) +
+  ggplot2::scale_x_continuous(
+    labels = scales::percent_format(),
+    expand = ggplot2::expansion(mult = c(0, 0.15))
+  ) +
+  ggplot2::labs(
+    title = "LLM classification accuracy varies by diagnosis",
+    x = "Classification accuracy",
+    y = NULL
+  ) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(
+    plot.background = ggplot2::element_rect(fill = "#000", color = NA),
+    panel.background = ggplot2::element_rect(fill = "#000", color = NA),
+    panel.grid.major.y = ggplot2::element_blank(),
+    panel.grid.minor = ggplot2::element_blank(),
+    panel.grid.major.x = ggplot2::element_line(color = "#404040", linewidth = 0.3),
+    text = ggplot2::element_text(color = "#e5e5e5", family = "Arial"),
+    plot.title = ggplot2::element_text(size = 16, face = "bold", margin = ggplot2::margin(b = 5)),
+    plot.subtitle = ggplot2::element_text(size = 12, color = "#a5a5a5"),
+    axis.text = ggplot2::element_text(color = "#e5e5e5", size = 11),
+    axis.title = ggplot2::element_text(color = "#e5e5e5", size = 12)
+  )
+```
+
+## Health symptoms
+
+```{r}
+#| echo: false
+diag_errors <- tibble::tibble(
   true_label = symptoms$label,
   predicted = oai_dat$diagnosis,
   uncertainty = oai_dat$uncertainty
-  ) |>
+) |>
   mutate(
     error = true_label != predicted,
     error_rate = as.numeric(error)
   )
 
-correlation <- cor(results$uncertainty, results$error_rate, method = "spearman")
+correlation <- cor(diag_errors$uncertainty, diag_errors$error_rate, method = "spearman")
 
-plot_data <- results |>
+uncertainty_plot <- diag_errors |>
   mutate(
     uncertainty_bin = case_when(
-      uncertainty < 0.25 ~ "Low\n(< 0.25)",
+      uncertainty <= 0.05 ~ "None\n(< 0.05)",
+      uncertainty < 0.25 ~ "Low\n(0.05-0.25)",
       uncertainty < 0.50 ~ "Medium\n(0.25-0.50)",
       TRUE ~ "High\n(≥ 0.50)"
     ) |>
-      factor(levels = c("Low\n(< 0.25)", "Medium\n(0.25-0.50)", "High\n(≥ 0.50)"))
+      factor(levels = c("None\n(< 0.05)", "Low\n(0.05-0.25)", "Medium\n(0.25-0.50)", "High\n(≥ 0.50)"))
   ) |>
   count(uncertainty_bin, error) |>
   group_by(uncertainty_bin) |>
@@ -361,7 +422,7 @@ plot_data <- results |>
     error_label = ifelse(error, "Error", "Correct")
   )
 
-plot_data |>
+uncertainty_plot |>
   ggplot2::ggplot(ggplot2::aes(uncertainty_bin, prop, fill = error_label)) +
   ggplot2::geom_col(position = "stack", width = 0.7, alpha = 0.9) +
   ggplot2::scale_fill_manual(
