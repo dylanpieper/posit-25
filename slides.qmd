@@ -613,6 +613,45 @@ combined_data |>
   )
 ```
 
+## Crimes
+::: {style="font-size: 0.50em;"}
+```{r}
+#| echo: false
+# Find one case where ML confident, LLM uncertain
+ml_confident <- combined_data |>
+  dplyr::filter(
+    toc_offense_type != openai_offense_type & 
+    toc_uncertainty <= 0.1 & llm_uncertainty >= 0.5
+  ) |>
+  dplyr::slice_head(n = 1)
+
+# Find one case where LLM confident, ML uncertain  
+llm_confident <- combined_data |>
+  dplyr::filter(
+    toc_offense_type != openai_offense_type & 
+    llm_uncertainty <= 0.1 & toc_uncertainty >= 0.5
+  ) |>
+  dplyr::slice_head(n = 1)
+
+# Combine cases
+both_cases <- dplyr::bind_rows(ml_confident, llm_confident) |>
+  dplyr::mutate(
+    case_name = c("ML Confident", "LLM Confident"),
+    description_short = ifelse(nchar(description) > 40, 
+                              paste0(substr(description, 1, 40), "..."), 
+                              description)
+  ) |>
+  dplyr::select(case_name, description_short, toc_offense_type, toc_uncertainty,
+                openai_offense_type, llm_uncertainty)
+
+both_cases |>
+  knitr::kable(
+    col.names = c("Case", "Description", "ML Tool", "ML?", "LLM", "LLM?"),
+    digits = 3
+  )
+```
+:::
+
 ## Advanced workflows
 ::::: columns
 ::: {.column width="50%"}

@@ -631,6 +631,53 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <h2>Crimes</h2>
 
 <img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
+<section id="crimes-5" class="slide level2">
+<h2>Crimes</h2>
+<div style="font-size: 0.50em;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 45%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 15%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Case</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">ML Tool</th>
+<th style="text-align: right;">ML?</th>
+<th style="text-align: left;">LLM</th>
+<th style="text-align: right;">LLM?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ML Confident</td>
+<td style="text-align: left;">Assigning Blank Cert</td>
+<td style="text-align: left;">property</td>
+<td style="text-align: right;">0.022</td>
+<td style="text-align: left;">public order</td>
+<td style="text-align: right;">0.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LLM Confident</td>
+<td style="text-align: left;">BAC .02 or Higher - 4th Off or Sub Off</td>
+<td style="text-align: left;">drug</td>
+<td style="text-align: right;">0.570</td>
+<td style="text-align: left;">dui offense</td>
+<td style="text-align: right;">0.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
 <section id="advanced-workflows" class="slide level2">
 <h2>Advanced workflows</h2>
 <div class="columns">
@@ -680,7 +727,7 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <div class="cell-output cell-output-stdout">
 <pre><code>Why don’t skeletons fight each other?
 
-They don’t have the guts!</code></pre>
+Because they don’t have the guts!</code></pre>
 </div>
 </div>
 </div>
@@ -691,9 +738,9 @@ They don’t have the guts!</code></pre>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1"</span>)</span>
 <span id="cb24-2"><a href=""></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Tell a joke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Why don't skeletons fight each other?
+<pre><code>Why did the scarecrow win an award?
 
-They don't have the guts!</code></pre>
+Because he was outstanding in his field!</code></pre>
 </div>
 </div>
 </div>
@@ -731,7 +778,7 @@ They don't have the guts!</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center" width="384"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center" width="384"></p>
 </figure>
 </div>
 </div>
