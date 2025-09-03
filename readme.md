@@ -1,5 +1,7 @@
 # Extract and classify data with LLM APIs
 
+This repo includes the data, code, and slides for my post::conf(2025) talk.
+
 ## API Key Setup
 
 (From a Posit [blog post](https://posit.co/blog/generate-data-with-an-llm-and-ellmer/#setup) by Sara Altman.)
