@@ -18,7 +18,7 @@ toc_offense_type <- toc |>
   dplyr::pull(offense_type_desc)
 
 # create ellmer chat object
-chat <- chat("openai/gpt-4.1",
+chat <- chat("openai/gpt-5-mini",
   system_prompt = "You are classifying criminal offense descriptions"
 )
 

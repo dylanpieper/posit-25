@@ -303,7 +303,7 @@ Data source: [Kaggle](https://www.kaggle.com/datasets/niyarrbarman/symptom2disea
 ```{r}
 #| echo: true
 symptoms <- read.csv("cls_health/Symptom2Disease.csv")
-chat <- chat("openai/gpt-4.1")
+chat <- chat("openai/gpt-5-mini")
 type_health <- type_object(
   diagnosis   = type_enum(unique(symptoms$label)), # n = 24
   uncertainty = type_number("Err on the side of caution, and
@@ -323,7 +323,7 @@ oai_dat <- parallel_chat_structured(
   type = type_health,
   include_cost = TRUE
 )
-mean(oai_dat$diagnosis == symptoms$label)
+mean(oai_dat$diagnosis == symptoms$label) # tidymodels: 93% accuracy
 mean(oai_dat$uncertainty)
 sum(oai_dat$cost)
 ```
@@ -481,7 +481,7 @@ Schema source: [Uniform Crime Classification Standard](https://www.science.org/d
 
 ```{r}
 #| echo: true
-chat <- chat("openai/gpt-4.1")
+chat <- chat("openai/gpt-5-mini")
 type_crime <- type_object(
   crime_type = type_enum(
     c("violent", "property", "drug", "dui offense", 
@@ -515,7 +515,7 @@ mean(oai_dat$uncertainty)
 sum(oai_dat$cost)
 ```
 
-Agreement with [ML tool](https://cjars-toc.isr.umich.edu): 82%
+Agreement with [ML tool](https://cjars-toc.isr.umich.edu): 80-82%
 
 ## Crimes
 
@@ -702,8 +702,8 @@ both_cases |>
 
 ```{r}
 #| echo: true
-chat <- chat("openai/gpt-4.1")
-chat$chat("Tell a joke")
+chat <- chat("openai/gpt-5-mini")
+chat$chat("Tell an AI joke")
 ```
 :::
 :::
@@ -714,8 +714,8 @@ chat$chat("Tell a joke")
 
 ```{r}
 #| echo: true
-chat <- chat("openai/gpt-4.1")
-chat$chat("Tell a joke")
+chat <- chat("openai/gpt-5-mini")
+chat$chat("Tell an AI joke")
 ```
 :::
 :::

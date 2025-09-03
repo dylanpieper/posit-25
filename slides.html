@@ -353,7 +353,7 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <pre><code>List of 3
  $ genus   : chr "Iris"
  $ species : chr "versicolor"
- $ features: chr "Deep purple-blue flowers with three upright petals (standards) and three drooping petals (falls) with yellow ma"| __truncated__</code></pre>
+ $ features: chr "Purple-blue flowers with three large drooping sepals (falls) and three upright petals (standards). Falls have y"| __truncated__</code></pre>
 </div>
 </div>
 </section>
@@ -395,9 +395,9 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <span id="cb5-9"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     species prob_setosa prob_virginica prob_versicolor
-1 versicolor        0.05            0.1            0.85
-2 versicolor        0.05            0.1            0.85
-3 versicolor        0.05            0.1            0.85</code></pre>
+1 versicolor        0.10           0.15            0.75
+2 versicolor        0.15           0.15            0.70
+3 versicolor        0.05           0.25            0.70</code></pre>
 </div>
 </div>
 </section>
@@ -473,7 +473,7 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <p>Data source: <a href="https://www.kaggle.com/datasets/niyarrbarman/symptom2disease/data">Kaggle</a>, public domain, <em>n</em> = 1,200</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>symptoms <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"cls_health/Symptom2Disease.csv"</span>)</span>
-<span id="cb9-2"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1"</span>)</span>
+<span id="cb9-2"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-5-mini"</span>)</span>
 <span id="cb9-3"><a href=""></a>type_health <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
 <span id="cb9-4"><a href=""></a>  <span class="at">diagnosis   =</span> <span class="fu">type_enum</span>(<span class="fu">unique</span>(symptoms<span class="sc">$</span>label)), <span class="co"># n = 24</span></span>
 <span id="cb9-5"><a href=""></a>  <span class="at">uncertainty =</span> <span class="fu">type_number</span>(<span class="st">"Err on the side of caution, and</span></span>
@@ -498,17 +498,17 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <span id="cb11-4"><a href=""></a>  <span class="at">type =</span> type_health,</span>
 <span id="cb11-5"><a href=""></a>  <span class="at">include_cost =</span> <span class="cn">TRUE</span></span>
 <span id="cb11-6"><a href=""></a>)</span>
-<span id="cb11-7"><a href=""></a><span class="fu">mean</span>(oai_dat<span class="sc">$</span>diagnosis <span class="sc">==</span> symptoms<span class="sc">$</span>label)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-7"><a href=""></a><span class="fu">mean</span>(oai_dat<span class="sc">$</span>diagnosis <span class="sc">==</span> symptoms<span class="sc">$</span>label) <span class="co"># tidymodels: 93% accuracy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6641667</code></pre>
+<pre><code>[1] 0.63</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">mean</span>(oai_dat<span class="sc">$</span>uncertainty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2749083</code></pre>
+<pre><code>[1] 0.5771333</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">sum</span>(oai_dat<span class="sc">$</span>cost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.703</code></pre>
+<pre><code>[1] 0.97951</code></pre>
 </div>
 </div>
 </section>
@@ -541,7 +541,7 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <h2>Crimes</h2>
 <p>Schema source: <a href="https://www.science.org/doi/10.1126/sciadv.abq8123">Uniform Crime Classification Standard</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1"</span>)</span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-5-mini"</span>)</span>
 <span id="cb17-2"><a href=""></a>type_crime <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
 <span id="cb17-3"><a href=""></a>  <span class="at">crime_type =</span> <span class="fu">type_enum</span>(</span>
 <span id="cb17-4"><a href=""></a>    <span class="fu">c</span>(<span class="st">"violent"</span>, <span class="st">"property"</span>, <span class="st">"drug"</span>, <span class="st">"dui offense"</span>, </span>
@@ -571,14 +571,14 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <span id="cb18-7"><a href=""></a>)</span>
 <span id="cb18-8"><a href=""></a><span class="fu">mean</span>(oai_dat<span class="sc">$</span>uncertainty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1256018</code></pre>
+<pre><code>[1] 0.1900325</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">sum</span>(oai_dat<span class="sc">$</span>cost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.67993</code></pre>
+<pre><code>[1] 0.691708</code></pre>
 </div>
 </div>
-<p>Agreement with <a href="https://cjars-toc.isr.umich.edu">ML tool</a>: 82%</p>
+<p>Agreement with <a href="https://cjars-toc.isr.umich.edu">ML tool</a>: 80-82%</p>
 </section>
 <section id="crimes-3" class="slide level2">
 <h2>Crimes</h2>
@@ -722,12 +722,13 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <div class="fragment fade-up" data-fragment-index="1">
 <h3 id="first-run">First Run</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1"</span>)</span>
-<span id="cb22-2"><a href=""></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Tell a joke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-5-mini"</span>)</span>
+<span id="cb22-2"><a href=""></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Tell an AI joke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Why don’t skeletons fight each other?
+<pre><code>I told my AI to tell me a joke. It printed: "Initializing sense_of_humor... 
+failed. Please reboot human." 
 
-Because they don’t have the guts!</code></pre>
+Want another?</code></pre>
 </div>
 </div>
 </div>
@@ -735,12 +736,12 @@ Because they don’t have the guts!</code></pre>
 <div class="fragment fade-up" data-fragment-index="2">
 <h3 id="second-run">Second Run</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-4.1"</span>)</span>
-<span id="cb24-2"><a href=""></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Tell a joke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-5-mini"</span>)</span>
+<span id="cb24-2"><a href=""></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Tell an AI joke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Why did the scarecrow win an award?
+<pre><code>Why did the neural network go to therapy? It had too many unresolved layers.
 
-Because he was outstanding in his field!</code></pre>
+Want another?</code></pre>
 </div>
 </div>
 </div>
