@@ -45,7 +45,7 @@ One model to process thousands of texts, documents, and images
 :::
 :::
 ::: {.column width="40%"}
-### Use [`library(ellmer)`](https://ellmer.tidyverse.org/) robustly for delicate use cases  {.fragment .fade-in-then-semi-out} 
+### Use [`library(ellmer)`](https://ellmer.tidyverse.org/) for robust classification, focusing on: {.fragment .fade-in-then-semi-out} 
 
 ::: {.fragment .fade-up}
 -   Structure
@@ -774,9 +774,9 @@ chat$chat("Tell one joke about R")
 
 ::: {.incremental}
 -   LLMs are accessible tools for **unstructured data analysis**
--   Use minimal prompting that focuses on **structure** and **task limitations**
--   Use **uncertainty scores** and **human review**
--   Use LLMs to **develop** and **validate** existing tools
+-   Use minimal prompting that focuses on **data structure** and **task boundaries** or **limitations**
+-   Use **uncertainty scores** and **human review** to evaluate LLM output
+-   Use LLMs to **develop** and **improve** existing ML tools
 :::
 
 ## Thank you!
