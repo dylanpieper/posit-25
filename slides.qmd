@@ -1,6 +1,6 @@
 ---
-title: "Extract and classify data with LLM APIs"
-subtitle: "A practical guide in R"
+title: "From messy to meaningful data"
+subtitle: "LLM-powered classification in R 🪄"
 author: "Dylan Pieper<br/>Data & Social Scientist"
 institute: "posit::conf(2025)<br/>University of Pittsburgh"
 format: 
@@ -19,7 +19,7 @@ format:
 cache: true
 ---
 
-## Dreams do come true {.fade-in}
+## Magic does exist {.fade-in}
 
 ::::: columns
 ::: {.column width="60%"}
@@ -34,6 +34,28 @@ cache: true
 One model to process thousands of texts, documents, and images
 :::
 :::
+:::::
+
+## What we'll cover today
+
+::::: columns
+::: {.column width="60%"}
+::: {.fragment .zoom-in style="text-align: center;"}
+![](https://ellmer.tidyverse.org/logo.png){fig-alt="Ellmer R package logo"}
+:::
+:::
+::: {.column width="40%"}
+### Use [`library(ellmer)`](https://ellmer.tidyverse.org/) robustly for delicate use cases  {.fragment .fade-in-then-semi-out} 
+
+::: {.fragment .fade-up}
+-   Structure
+-   Prompting  
+-   Accuracy
+-   Confidence
+-   Validation
+:::
+:::
+
 :::::
 
 ## What is extraction? {auto-animate="true"}
@@ -122,48 +144,24 @@ Wikipedia by D. Gordon E. Robertson, CC-BY-SA 3.0
 :::
 :::
 
-## Traditional classification
+<!-- ## Traditional classification -->
 
-::::: columns
-::: {.column width="60%"}
-::: {.fragment .zoom-in style="text-align: center;"}
-![](images/ml_workflow.png){fig-alt="ML Classification Workflow" width="440"}
-:::
-:::
-::: {.column width="40%"}
-### Traditional ML requires lots of data for training and testing {.fragment .fade-in-then-semi-out}
+<!-- ::::: columns -->
+<!-- ::: {.column width="60%"} -->
+<!-- ::: {.fragment .zoom-in style="text-align: center;"} -->
+<!-- ![](images/ml_workflow.png){fig-alt="ML Classification Workflow" width="440"} -->
+<!-- ::: -->
+<!-- ::: -->
+<!-- ::: {.column width="40%"} -->
+<!-- ### Traditional ML requires lots of data for training {.fragment .fade-in-then-semi-out} -->
 
-::: {.fragment .fade-up}
-But it encourages us to examine the accuracy and uncertainty of our predictions
-:::
-:::
-:::::
+<!-- ::: {.fragment .fade-up} -->
+<!-- But it encourages us to examine the **accuracy** and **uncertainty** of our predictions -->
+<!-- ::: -->
+<!-- ::: -->
+<!-- ::::: -->
 
-## What we'll cover today
-
-::::: columns
-::: {.column width="60%"}
-::: {.fragment .zoom-in style="text-align: center;"}
-![](https://ellmer.tidyverse.org/logo.png){fig-alt="Ellmer R package logo"}
-:::
-:::
-::: {.column width="40%"}
-### Use [`library(ellmer)`](https://ellmer.tidyverse.org/) to extract and classify data {.fragment .fade-in-then-semi-out}
-
-::: {.fragment .fade-in-then-semi-out}
-With robustness and care for delicate use cases 
-:::
-
-::: {.fragment .fade-up}
--   **Iris flowers** → prompting  
--   **Health symptoms** → uncertainty
--   **Crimes** → validation
-:::
-:::
-
-:::::
-
-## Getting started with ellmer
+## Specify type structure
 
 ![](images/versicolor.jpg){fig-alt="Iris versicolor flower" style="height: 150px;"} Iris versicolor
 
@@ -177,6 +175,7 @@ library(glue)
 
 ```{r}
 #| echo: true
+#| code-line-numbers: "2-6"
 chat <- chat("anthropic/claude-sonnet-4-20250514")
 type_flower <- type_object(
   genus    = type_string(),
@@ -184,17 +183,18 @@ type_flower <- type_object(
   features = type_string("Focus on morphology"),
 )
 str(chat$chat_structured(
-  content_image_file("images/versicolor.jpg"), # or content_pdf_file(), or text
+  content_image_file("images/versicolor.jpg"),
   type = type_flower
 ))
 ```
 
-## Getting better with ellmer
+## Mimic traditional ML output
 
 ![](images/versicolor.jpg){fig-alt="Iris versicolor flower" style="height: 150px;"}  Iris versicolor
 
 ```{r}
 #| echo: true
+#| code-line-numbers: "2-7"
 prob <- "Probability (0.00-1.00) Iris is {{species}}"
 type_flower <- type_object(
   species         = type_enum(c("setosa", "virginica", "versicolor")),
@@ -207,7 +207,7 @@ str(chat$clone()$chat_structured(
 ))
 ```
 
-## Getting upset with ellmer
+## Evaluate task limitations
 
 ![](images/setosa.jpg){fig-alt="Iris setosa flower" style="height: 150px;"}
 ![](images/virginica.jpg){fig-alt="Iris virginica flower" style="height: 150px;"}
@@ -215,6 +215,7 @@ str(chat$clone()$chat_structured(
 
 ```{r}
 #| echo: true
+#| code-line-numbers: "3-7"
 parallel_chat_structured(
   chat = chat$clone(),
   prompts = list(
@@ -226,13 +227,14 @@ parallel_chat_structured(
 )
 ```
 
-## Making peace with ellmer
+## Adjust your expectations
 
 ![](images/setosa.jpg){fig-alt="Iris setosa flower" style="height: 150px;"}
 ![](images/rose.jpg){fig-alt="Rose flower" style="height: 150px;"}
 
 ```{r}
 #| echo: true
+#| code-line-numbers: "1-3"
 type_flower <- type_object(
   genus = type_enum(c( "iris", "rose")),
 )
@@ -250,25 +252,25 @@ parallel_chat_structured(
 
 ::::: columns
 ::: {.column width="50%"}
-### Less is more {.fragment .fade-up}
+### Less is more {.fragment .fade-up .fade-up data-fragment-index="1"}
 
-::: {.fragment .fade-up}
+::: {.fragment .fade-up data-fragment-index="1"}
 ✅ **Focus on**
 
 -   Clear structure
 -   Task limitations
 :::
 
-::: {.fragment .fade-up}
-✅ **Handle edge cases**
+::: {.fragment .fade-up data-fragment-index="3"}
+✅ **Add context for**
 
+-   Edge cases
 -   What if multiple categories fit?
--   When to express uncertainty?
 :::
 :::
 
 ::: {.column width="50%"}
-::: {.fragment .fade-up}
+::: {.fragment .fade-up data-fragment-index="2"}
 ### Evidence {.text-center}
 
 > "There was no need to provide those carefully crafted 20,000 tokens of context and, worse than that, doing so actually *hurt* performance."
@@ -278,7 +280,7 @@ parallel_chat_structured(
 :::
 :::::
 
-## Health symptoms
+## Disease symptoms
 
 ::::: columns
 ::: {.column width="40%"}
@@ -296,14 +298,14 @@ parallel_chat_structured(
 :::
 :::::
 
-## Health symptoms
+## Disease symptoms
 
 Data source: [Kaggle](https://www.kaggle.com/datasets/niyarrbarman/symptom2disease/data), public domain, *n* = 1,200
 
 ```{r}
 #| echo: true
+#| code-line-numbers: "2-7"
 symptoms <- read.csv("cls_health/Symptom2Disease.csv")
-chat <- chat("openai/gpt-5-mini")
 type_health <- type_object(
   diagnosis   = type_enum(unique(symptoms$label)), # n = 24
   uncertainty = type_number("Err on the side of caution, and
@@ -313,22 +315,45 @@ type_health <- type_object(
 unique(symptoms$label) |> head(12)
 ```
 
-## Health symptoms
+## Disease symptoms
 
 ```{r}
 #| echo: true
+#| eval: false
+#| code-line-numbers: "3-5"
 oai_dat <- parallel_chat_structured(
-  chat,
+  chat = chat("openai/gpt-5-mini"),
   prompts = as.list(symptoms$text),
   type = type_health,
   include_cost = TRUE
 )
-mean(oai_dat$diagnosis == symptoms$label) # tidymodels: 93% accuracy
-mean(oai_dat$uncertainty)
-sum(oai_dat$cost)
 ```
 
-## Health symptoms
+```{r}
+#| echo: false
+oai_dat <- read.csv("cls_health/oai_dat.csv")
+accuracy <- round(mean(oai_dat$diagnosis == symptoms$label) * 100, 0)
+confidence <- round((1 - mean(oai_dat$uncertainty)) * 100, 0)
+cost <- round(sum(oai_dat$cost), 2)
+```
+
+::: {.fragment .fade-up}
+```{r}
+#| echo: true
+#| eval: false
+accuracy <- mean(oai_dat$diagnosis == symptoms$label)
+confidence <- 1 - mean(oai_dat$uncertainty)
+cost <- sum(oai_dat$cost)
+```
+:::
+
+::: {.incremental}
+-   **Accuracy**: `r accuracy`% (vs. 93% in tidymodels)
+-   **Confidence**: `r confidence`%
+-   **Cost**: $`r cost`
+:::
+
+## Disease symptoms
 
 ```{r}
 #| echo: false
@@ -388,42 +413,42 @@ accuracy_by_diagnosis |>
   )
 ```
 
-## Health symptoms
+## Disease symptoms
 
 ```{r}
 #| echo: false
 diag_errors <- tibble::tibble(
   true_label = symptoms$label,
   predicted = oai_dat$diagnosis,
-  uncertainty = oai_dat$uncertainty
+  certainty = 1 - oai_dat$uncertainty
 ) |>
   mutate(
     error = true_label != predicted,
     error_rate = as.numeric(error)
   )
 
-correlation <- cor(diag_errors$uncertainty, diag_errors$error_rate, method = "spearman")
+correlation <- cor(diag_errors$certainty, diag_errors$error_rate, method = "spearman")
 
-uncertainty_plot <- diag_errors |>
+certainty_plot <- diag_errors |>
   mutate(
-    uncertainty_bin = case_when(
-      uncertainty <= 0.05 ~ "None\n(< 0.05)",
-      uncertainty < 0.25 ~ "Low\n(0.05-0.25)",
-      uncertainty < 0.50 ~ "Medium\n(0.25-0.50)",
-      TRUE ~ "High\n(≥ 0.50)"
+    certainty_bin = case_when(
+      certainty >= 0.95 ~ "Very High\n(≥ 0.95)",
+      certainty >= 0.75 ~ "High\n(0.75-0.95)",
+      certainty >= 0.50 ~ "Medium\n(0.50-0.75)",
+      TRUE ~ "Low\n(< 0.50)"
     ) |>
-      factor(levels = c("None\n(< 0.05)", "Low\n(0.05-0.25)", "Medium\n(0.25-0.50)", "High\n(≥ 0.50)"))
+      factor(levels = c("Low\n(< 0.50)", "Medium\n(0.50-0.75)", "High\n(0.75-0.95)", "Very High\n(≥ 0.95)"))
   ) |>
-  count(uncertainty_bin, error) |>
-  group_by(uncertainty_bin) |>
+  count(certainty_bin, error) |>
+  group_by(certainty_bin) |>
   mutate(
     total = sum(n),
     prop = n / total,
     error_label = ifelse(error, "Error", "Correct")
   )
 
-uncertainty_plot |>
-  ggplot2::ggplot(ggplot2::aes(uncertainty_bin, prop, fill = error_label)) +
+certainty_plot |>
+  ggplot2::ggplot(ggplot2::aes(certainty_bin, prop, fill = error_label)) +
   ggplot2::geom_col(position = "stack", width = 0.7, alpha = 0.9) +
   ggplot2::scale_fill_manual(
     values = c("Correct" = "#4ade80", "Error" = "#f87171"),
@@ -434,9 +459,9 @@ uncertainty_plot |>
     expand = c(0, 0)
   ) +
   ggplot2::labs(
-    title = "LLM uncertainty predicts classification errors",
-    subtitle = glue::glue("Higher uncertainty → higher error rates (r = {round(correlation, 3)})"),
-    x = "LLM uncertainty",
+    title = "LLM certainty predicts classification accuracy",
+    subtitle = glue::glue("Higher certainty → lower error rates (r = {round(correlation, 3)})"),
+    x = "LLM certainty",
     y = "Proportion of cases"
   ) +
   ggplot2::theme_minimal() +
@@ -481,7 +506,6 @@ Schema source: [Uniform Crime Classification Standard](https://www.science.org/d
 
 ```{r}
 #| echo: true
-chat <- chat("openai/gpt-5-mini")
 type_crime <- type_object(
   crime_type = type_enum(
     c("violent", "property", "drug", "dui offense", 
@@ -504,18 +528,29 @@ Data source: [Pennsylvania Courts](http://www.pacourts.us), *n* = 1,537
 
 ```{r}
 #| echo: true
+#| eval: false
+#| code-line-numbers: "2-7"
 crimes <- read.csv("cls_offense/crimes.csv")
-oai_dat <- parallel_chat_structured( # use batch_chat() to save 50%
-  chat,
+oai_dat <- parallel_chat_structured(
+  chat = chat("openai/gpt-5-mini"),
   prompts = as.list(crimes$description),
   type = type_crime,
   include_cost = TRUE
 )
-mean(oai_dat$uncertainty)
-sum(oai_dat$cost)
 ```
 
-Agreement with [ML tool](https://cjars-toc.isr.umich.edu): 80-82%
+```{r}
+#| echo: false
+oai_dat <- read.csv("cls_offense/oai_dat.csv")
+certainty <- round((1 - mean(oai_dat$uncertainty)) * 100)
+cost <- round(sum(oai_dat$cost), 2)
+```
+
+:::{.incremental}
+-   Certainty: `r certainty`%
+-   Cost: $`r cost`
+-   Agreement with [ML tool](https://cjars-toc.isr.umich.edu): 81%
+:::
 
 ## Crimes
 
@@ -526,7 +561,6 @@ toc <- openxlsx::readWorkbook("cls_offense/cjars_toc.xlsx", sheet = 2)
 toc_uccs <- openxlsx::readWorkbook("cls_offense/cjars_toc.xlsx", sheet = 3)
 
 oai_dat <- utils::read.csv("cls_offense/oai_dat.csv") |>
-  dplyr::select(-harm_score, -action_type) |>
   dplyr::relocate(description)
 
 toc_processed <- toc |>
@@ -541,24 +575,25 @@ toc_processed <- toc |>
                 toc_offense_type = offense_type_desc, toc_confidence = probability)
 
 oai_processed <- oai_dat |>
-  dplyr::mutate(description = stringr::str_squish(description)) |>
+  dplyr::mutate(description = stringr::str_squish(description),
+                llm_certainty = 1 - uncertainty_score) |>
   dplyr::select(description,
                 openai_offense_category = offense_category,
-                openai_offense_type = offense_type, 
-                llm_uncertainty = uncertainty_score)
+                openai_offense_type = offense_type,
+                llm_certainty)
 
 combined_data <- toc_processed |>
   dplyr::left_join(oai_processed, by = "description") |>
   dplyr::mutate(
-    toc_uncertainty = 1 - toc_confidence,
+    toc_certainty = toc_confidence,
     classification_agreement = toc_offense_type == openai_offense_type,
     is_animal_cruelty = stringr::str_detect(tolower(description), "cruelty")
   ) |>
-  dplyr::filter(!is.na(toc_uncertainty), !is.na(llm_uncertainty))
+  dplyr::filter(!is.na(toc_certainty), !is.na(llm_certainty))
 
-uncertainty_cor <- cor(combined_data$toc_uncertainty, 
-                       combined_data$llm_uncertainty, 
-                       method = "spearman")
+certainty_cor <- cor(combined_data$toc_certainty, 
+                      combined_data$llm_certainty, 
+                      method = "spearman")
 classification_agreement_rate <- mean(combined_data$classification_agreement, na.rm = TRUE)
 
 animal_cases <- combined_data |>
@@ -571,18 +606,18 @@ animal_cases <- combined_data |>
 
 animal_cases |>
   dplyr::filter(systematic_error) |>
-  dplyr::select(description, toc_offense_type, openai_offense_type, 
-                toc_confidence, llm_uncertainty) |>
+  dplyr::select(description, toc_offense_type, toc_confidence,
+                openai_offense_type, llm_certainty) |>
   head(2) |>
   knitr::kable(
-    col.names = c("Description", "ML Tool", "LLM", "ML Confidence", "LLM Uncertainty"),
+    col.names = c("Description", "ML Tool", "ML Cert.", "LLM", "LLM Cert."),
     caption = "ML tool misclassifies animal cruelty as non-violent"
   )
 ```
 :::
 
 ::: {.fragment .zoom-in style="text-align: center;"}
-High confidence ≠ correct classification
+High certainty ≠ correct classification
 :::
 
 ## Crimes
@@ -590,14 +625,19 @@ High confidence ≠ correct classification
 ```{r}
 #| echo: false
 combined_data |>
-  ggplot2::ggplot(ggplot2::aes(toc_uncertainty, llm_uncertainty)) +
-  ggplot2::geom_point(alpha = 0.6, color = "#4ade80") +
-  ggplot2::geom_smooth(method = "lm", se = FALSE, color = "#f87171") +
+  ggplot2::ggplot(ggplot2::aes(toc_certainty, llm_certainty, color = classification_agreement)) +
+  ggplot2::geom_point(alpha = 0.6, size = 1.2) +
+  ggplot2::geom_smooth(method = "lm", se = FALSE, color = "#f87171", linewidth = 1) +
+  ggplot2::scale_color_manual(
+    values = c("TRUE" = "#4ade80", "FALSE" = "#f87171"),
+    labels = c("TRUE" = "Agreement", "FALSE" = "Disagreement"),
+    name = "Classification"
+  ) +
   ggplot2::labs(
-    title = "Cross-model uncertainty validation",
-    subtitle = glue::glue("82% classification agreement, r = {round(uncertainty_cor, 3)} uncertainty correlation"),
-    x = "ML tool uncertainty (1 - probability)",
-    y = "LLM uncertainty"
+    title = "Cross-model certainty validation",
+    subtitle = glue::glue("81% classification agreement, r = {round(certainty_cor, 3)} certainty correlation"),
+    x = "ML tool certainty",
+    y = "LLM certainty"
   ) +
   ggplot2::theme_minimal() +
   ggplot2::theme(
@@ -609,44 +649,47 @@ combined_data |>
     plot.title = ggplot2::element_text(size = 16, face = "bold"),
     plot.subtitle = ggplot2::element_text(size = 12, color = "#a5a5a5"),
     axis.text = ggplot2::element_text(color = "#e5e5e5", size = 11),
-    axis.title = ggplot2::element_text(color = "#e5e5e5", size = 12)
+    axis.title = ggplot2::element_text(color = "#e5e5e5", size = 12),
+    legend.text = ggplot2::element_text(color = "#e5e5e5", size = 11),
+    legend.title = ggplot2::element_text(color = "#e5e5e5", size = 12),
+    legend.position = "top"
   )
 ```
 
 ## Crimes
-::: {style="font-size: 0.50em;"}
+::: {style="font-size: 0.8em;"}
 ```{r}
 #| echo: false
 # Find one case where ML confident, LLM uncertain
 ml_confident <- combined_data |>
   dplyr::filter(
     toc_offense_type != openai_offense_type & 
-    toc_uncertainty <= 0.1 & llm_uncertainty >= 0.5
+    toc_certainty >= 0.9 & llm_certainty <= 0.5
   ) |>
-  dplyr::slice_head(n = 1)
+  dplyr::slice(2)
 
 # Find one case where LLM confident, ML uncertain  
 llm_confident <- combined_data |>
   dplyr::filter(
     toc_offense_type != openai_offense_type & 
-    llm_uncertainty <= 0.1 & toc_uncertainty >= 0.5
+    llm_certainty >= 0.9 & toc_certainty <= 0.5
   ) |>
   dplyr::slice_head(n = 1)
 
 # Combine cases
 both_cases <- dplyr::bind_rows(ml_confident, llm_confident) |>
   dplyr::mutate(
-    case_name = c("ML Confident", "LLM Confident"),
     description_short = ifelse(nchar(description) > 40, 
                               paste0(substr(description, 1, 40), "..."), 
-                              description)
+                              description),
+    toc_certainty = round(toc_certainty, 2)
   ) |>
-  dplyr::select(case_name, description_short, toc_offense_type, toc_uncertainty,
-                openai_offense_type, llm_uncertainty)
+  dplyr::select(description_short, toc_offense_type, toc_certainty,
+                openai_offense_type, llm_certainty)
 
 both_cases |>
   knitr::kable(
-    col.names = c("Case", "Description", "ML Tool", "ML?", "LLM", "LLM?"),
+    col.names = c("Description", "ML Tool", "ML Cert.", "LLM", "LLM Cert."),
     digits = 3
   )
 ```
@@ -703,7 +746,7 @@ both_cases |>
 ```{r}
 #| echo: true
 chat <- chat("openai/gpt-5-mini")
-chat$chat("Tell an AI joke")
+chat$chat("Tell one joke about R")
 ```
 :::
 :::
@@ -715,7 +758,7 @@ chat$chat("Tell an AI joke")
 ```{r}
 #| echo: true
 chat <- chat("openai/gpt-5-mini")
-chat$chat("Tell an AI joke")
+chat$chat("Tell one joke about R")
 ```
 :::
 :::
@@ -724,17 +767,15 @@ chat$chat("Tell an AI joke")
 ::: {.fragment .fade-up data-fragment-index="3" style="text-align: center; margin-top: 30px;"}
 **Same input → Different outputs**
 
-*More consistent when prompts are specific*
-
 *Always validate and look at the responses*
 :::
 
 ## Takeaways
 
 ::: {.incremental}
--   LLMs are accessible tools for **extraction** and **classification**, but be careful
+-   LLMs are accessible tools for **unstructured data analysis**
 -   Use minimal prompting that focuses on **structure** and **task limitations**
--   Use **uncertainty** scores to guide human review
+-   Use **uncertainty scores** and **human review**
 -   Use LLMs to **develop** and **validate** existing tools
 :::
 
@@ -754,7 +795,7 @@ chat$chat("Tell an AI joke")
 
 ### Questions?
 
-*Let's discuss data!*
+*Let's discuss LLMs!*
 :::
 
 ::: {.column}

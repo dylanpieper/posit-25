@@ -33,57 +33,58 @@ schema <- type_object(
   offense_type = type_enum(
     toc_offense_type,
     "The primary crime type.
-    If violent and another type clearly applies, choose violent,
-    but only if intent to harm or injure is clearly present.
-    Threats, harassment, stalking, and similar are all violent."
+     If violent and another type clearly applies, choose violent,
+     but only if intent to harm or injure is clearly present.
+     Threats, harassment, stalking, and similar are all violent."
   ),
-  # harm level and type (UK's Office for National Statistics)
-  harm_level = type_enum(
-    c(
-      "individual",
-      "community",
-      "institutional",
-      "societal"
-    ),
-    "The primary harm level"
-  ),
-  harm_type = type_enum(
-    c(
-      "physical",
-      "emotional or psychological",
-      "financial or economic",
-      "community safety",
-      "privacy"
-    ),
-    "The primary harm type"
-  ),
-  # harm score (custom)
-  harm_score = type_number(
-    "A score for representing that this offense creates obvious harm,
-    not just a harmless social norm violation because it's illegal,
-    ranging from 0.0 to 1.0."
-  ),
-  # action type (UCCS)
-  action_type = type_enum(
-    c(
-      "occured",
-      "attempted",
-      "conspiracy"
-    ),
-    "The action type was labeled as conspiracy or attempted, or the act probabily occured"
-  ),
+  # # harm level and type (UK's Office for National Statistics)
+  # harm_level = type_enum(
+  #   c(
+  #     "individual",
+  #     "community",
+  #     "institutional",
+  #     "societal"
+  #   ),
+  #   "The primary harm level"
+  # ),
+  # harm_type = type_enum(
+  #   c(
+  #     "physical",
+  #     "emotional or psychological",
+  #     "financial or economic",
+  #     "community safety",
+  #     "privacy"
+  #   ),
+  #   "The primary harm type"
+  # ),
+  # # harm score (custom)
+  # harm_score = type_number(
+  #   "A score for representing that this offense creates obvious harm,
+  #    not just a harmless social norm violation because it's illegal,
+  #    ranging from 0.0 to 1.0."
+  # ),
+  # # action type (UCCS)
+  # action_type = type_enum(
+  #   c(
+  #     "occured",
+  #     "attempted",
+  #     "conspiracy"
+  #   ),
+  #   "The action type was labeled as conspiracy or attempted, or the act probabily occured"
+  # ),
   # model uncertainty (custom)
   uncertainty_score = type_number(
     "Your uncertainty in the classification responses and scores,
-    higher scores reflect unclear or difficult to classify descriptions,
-    ranging from 0.0 to 1.0."
+     higher scores reflect unclear or difficult to classify descriptions,
+     ranging from 0.0 to 1.0."
   )
 )
 
 oai_dat <- parallel_chat_structured(
   chat,
   prompts = as.list(crimes$description),
-  type = schema
+  type = schema,
+  include_cost = TRUE
 )
 
 utils::write.csv(

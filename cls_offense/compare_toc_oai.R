@@ -6,7 +6,6 @@ toc_uccs <- openxlsx::readWorkbook("cls_offense/cjars_toc.xlsx", sheet = 3)
 
 # load openai data
 oai_dat <- utils::read.csv("cls_offense/oai_dat.csv") |>
-  dplyr::select(-harm_score, -action_type) |>
   dplyr::relocate(description)
 
 # join toc data with uccs codes

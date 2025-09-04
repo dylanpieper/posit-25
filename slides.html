@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.7.32">
 
   <meta name="author" content="Dylan Pieper Data &amp; Social Scientist">
-  <title>Extract and classify data with LLM APIs</title>
+  <title>From messy to meaningful data</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -193,8 +193,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Extract and classify data with LLM APIs</h1>
-  <p class="subtitle">A practical guide in R</p>
+  <h1 class="title">From messy to meaningful data</h1>
+  <p class="subtitle">LLM-powered classification in R 🪄</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -208,8 +208,8 @@ Dylan Pieper<br>Data &amp; Social Scientist
 </div>
 
 </section>
-<section id="dreams-do-come-true" class="slide level2 fade-in">
-<h2>Dreams do come true</h2>
+<section id="magic-does-exist" class="slide level2 fade-in">
+<h2>Magic does exist</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="fragment zoom-in" style="text-align: center;">
@@ -219,6 +219,27 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <h3 class="fragment fade-in-then-semi-out" id="llms-make-unstructured-data-analysis-accessible">LLMs make unstructured data analysis accessible</h3>
 <div class="fragment fade-up">
 <p>One model to process thousands of texts, documents, and images</p>
+</div>
+</div></div>
+</section>
+<section id="what-well-cover-today" class="slide level2">
+<h2>What we’ll cover today</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="fragment zoom-in" style="text-align: center;">
+<p><img data-src="https://ellmer.tidyverse.org/logo.png" alt="Ellmer R package logo"></p>
+</div>
+</div><div class="column" style="width:40%;">
+<h3 class="fragment fade-in-then-semi-out" id="use-libraryellmer-robustly-for-delicate-use-cases">Use <a href="https://ellmer.tidyverse.org/"><code>library(ellmer)</code></a> robustly for delicate use cases</h3>
+<div class="fragment fade-up">
+<ul>
+<li>Structure</li>
+<li>Prompting<br>
+</li>
+<li>Accuracy</li>
+<li>Confidence</li>
+<li>Validation</li>
+</ul>
 </div>
 </div></div>
 </section>
@@ -298,70 +319,48 @@ Dylan Pieper<br>Data &amp; Social Scientist
 </ul>
 </div></div>
 </div>
+<!-- ## Traditional classification -->
+<!-- ::::: columns -->
+<!-- ::: {.column width="60%"} -->
+<!-- ::: {.fragment .zoom-in style="text-align: center;"} -->
+<!-- ![](images/ml_workflow.png){fig-alt="ML Classification Workflow" width="440"} -->
+<!-- ::: -->
+<!-- ::: -->
+<!-- ::: {.column width="40%"} -->
+<!-- ### Traditional ML requires lots of data for training {.fragment .fade-in-then-semi-out} -->
+<!-- ::: {.fragment .fade-up} -->
+<!-- But it encourages us to examine the **accuracy** and **uncertainty** of our predictions -->
+<!-- ::: -->
+<!-- ::: -->
+<!-- ::::: -->
 </section>
-<section id="traditional-classification" class="slide level2">
-<h2>Traditional classification</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
-<div class="fragment zoom-in" style="text-align: center;">
-<p><img data-src="images/ml_workflow.png" alt="ML Classification Workflow" width="440"></p>
-</div>
-</div><div class="column" style="width:40%;">
-<h3 class="fragment fade-in-then-semi-out" id="traditional-ml-requires-lots-of-data-for-training-and-testing">Traditional ML requires lots of data for training and testing</h3>
-<div class="fragment fade-up">
-<p>But it encourages us to examine the accuracy and uncertainty of our predictions</p>
-</div>
-</div></div>
-</section>
-<section id="what-well-cover-today" class="slide level2">
-<h2>What we’ll cover today</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
-<div class="fragment zoom-in" style="text-align: center;">
-<p><img data-src="https://ellmer.tidyverse.org/logo.png" alt="Ellmer R package logo"></p>
-</div>
-</div><div class="column" style="width:40%;">
-<h3 class="fragment fade-in-then-semi-out" id="use-libraryellmer-to-extract-and-classify-data">Use <a href="https://ellmer.tidyverse.org/"><code>library(ellmer)</code></a> to extract and classify data</h3>
-<div class="fragment fade-in-then-semi-out">
-<p>With robustness and care for delicate use cases</p>
-</div>
-<div class="fragment fade-up">
-<ul>
-<li><strong>Iris flowers</strong> → prompting<br>
-</li>
-<li><strong>Health symptoms</strong> → uncertainty</li>
-<li><strong>Crimes</strong> → validation</li>
-</ul>
-</div>
-</div></div>
-</section>
-<section id="getting-started-with-ellmer" class="slide level2">
-<h2>Getting started with ellmer</h2>
+<section id="specify-type-structure" class="slide level2">
+<h2>Specify type structure</h2>
 <p><img data-src="images/versicolor.jpg" style="height: 150px;" alt="Iris versicolor flower"> Iris versicolor</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"anthropic/claude-sonnet-4-20250514"</span>)</span>
+<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="2-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"anthropic/claude-sonnet-4-20250514"</span>)</span>
 <span id="cb1-2"><a href=""></a>type_flower <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
 <span id="cb1-3"><a href=""></a>  <span class="at">genus    =</span> <span class="fu">type_string</span>(),</span>
 <span id="cb1-4"><a href=""></a>  <span class="at">species  =</span> <span class="fu">type_string</span>(),</span>
 <span id="cb1-5"><a href=""></a>  <span class="at">features =</span> <span class="fu">type_string</span>(<span class="st">"Focus on morphology"</span>),</span>
 <span id="cb1-6"><a href=""></a>)</span>
 <span id="cb1-7"><a href=""></a><span class="fu">str</span>(chat<span class="sc">$</span><span class="fu">chat_structured</span>(</span>
-<span id="cb1-8"><a href=""></a>  <span class="fu">content_image_file</span>(<span class="st">"images/versicolor.jpg"</span>), <span class="co"># or content_pdf_file(), or text</span></span>
+<span id="cb1-8"><a href=""></a>  <span class="fu">content_image_file</span>(<span class="st">"images/versicolor.jpg"</span>),</span>
 <span id="cb1-9"><a href=""></a>  <span class="at">type =</span> type_flower</span>
 <span id="cb1-10"><a href=""></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 3
  $ genus   : chr "Iris"
  $ species : chr "versicolor"
- $ features: chr "Purple-blue flowers with three large drooping sepals (falls) and three upright petals (standards). Falls have y"| __truncated__</code></pre>
+ $ features: chr "Purple-blue flowers with three large drooping petals (falls) and three upright petals (standards), yellow throa"| __truncated__</code></pre>
 </div>
 </div>
 </section>
-<section id="getting-better-with-ellmer" class="slide level2">
-<h2>Getting better with ellmer</h2>
+<section id="mimic-traditional-ml-output" class="slide level2">
+<h2>Mimic traditional ML output</h2>
 <p><img data-src="images/versicolor.jpg" style="height: 150px;" alt="Iris versicolor flower"> Iris versicolor</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>prob <span class="ot">&lt;-</span> <span class="st">"Probability (0.00-1.00) Iris is {{species}}"</span></span>
+<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="2-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>prob <span class="ot">&lt;-</span> <span class="st">"Probability (0.00-1.00) Iris is {{species}}"</span></span>
 <span id="cb3-2"><a href=""></a>type_flower <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
 <span id="cb3-3"><a href=""></a>  <span class="at">species         =</span> <span class="fu">type_enum</span>(<span class="fu">c</span>(<span class="st">"setosa"</span>, <span class="st">"virginica"</span>, <span class="st">"versicolor"</span>)),</span>
 <span id="cb3-4"><a href=""></a>  <span class="at">prob_setosa     =</span> <span class="fu">type_number</span>(<span class="fu">interpolate</span>(prob, <span class="at">species =</span> <span class="st">"setosa"</span>)),</span>
@@ -380,11 +379,11 @@ Dylan Pieper<br>Data &amp; Social Scientist
 </div>
 </div>
 </section>
-<section id="getting-upset-with-ellmer" class="slide level2">
-<h2>Getting upset with ellmer</h2>
+<section id="evaluate-task-limitations" class="slide level2">
+<h2>Evaluate task limitations</h2>
 <p><img data-src="images/setosa.jpg" style="height: 150px;" alt="Iris setosa flower"> <img data-src="images/virginica.jpg" style="height: 150px;" alt="Iris virginica flower"> <img data-src="images/versicolor.jpg" style="height: 150px;" alt="Iris versicolor flower"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">parallel_chat_structured</span>(</span>
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="3-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">parallel_chat_structured</span>(</span>
 <span id="cb5-2"><a href=""></a>  <span class="at">chat =</span> chat<span class="sc">$</span><span class="fu">clone</span>(),</span>
 <span id="cb5-3"><a href=""></a>  <span class="at">prompts =</span> <span class="fu">list</span>(</span>
 <span id="cb5-4"><a href=""></a>    <span class="fu">content_image_file</span>(<span class="st">"images/setosa.jpg"</span>),</span>
@@ -395,17 +394,17 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <span id="cb5-9"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     species prob_setosa prob_virginica prob_versicolor
-1 versicolor        0.10           0.15            0.75
-2 versicolor        0.15           0.15            0.70
-3 versicolor        0.05           0.25            0.70</code></pre>
+1 versicolor        0.05           0.15             0.8
+2 versicolor        0.10           0.10             0.8
+3 versicolor        0.10           0.10             0.8</code></pre>
 </div>
 </div>
 </section>
-<section id="making-peace-with-ellmer" class="slide level2">
-<h2>Making peace with ellmer</h2>
+<section id="adjust-your-expectations" class="slide level2">
+<h2>Adjust your expectations</h2>
 <p><img data-src="images/setosa.jpg" style="height: 150px;" alt="Iris setosa flower"> <img data-src="images/rose.jpg" style="height: 150px;" alt="Rose flower"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>type_flower <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="1-3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>type_flower <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
 <span id="cb7-2"><a href=""></a>  <span class="at">genus =</span> <span class="fu">type_enum</span>(<span class="fu">c</span>( <span class="st">"iris"</span>, <span class="st">"rose"</span>)),</span>
 <span id="cb7-3"><a href=""></a>)</span>
 <span id="cb7-4"><a href=""></a><span class="fu">parallel_chat_structured</span>(</span>
@@ -427,23 +426,23 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <h2 data-id="quarto-animate-title">Prompting philosophy</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<h3 class="fragment fade-up" id="less-is-more">Less is more</h3>
-<div class="fragment fade-up">
+<h3 class="fragment fade-up" data-fragment-index="1" id="less-is-more">Less is more</h3>
+<div class="fragment fade-up" data-fragment-index="1">
 <p>✅ <strong>Focus on</strong></p>
 <ul>
 <li>Clear structure</li>
 <li>Task limitations</li>
 </ul>
 </div>
-<div class="fragment fade-up">
-<p>✅ <strong>Handle edge cases</strong></p>
+<div class="fragment fade-up" data-fragment-index="3">
+<p>✅ <strong>Add context for</strong></p>
 <ul>
+<li>Edge cases</li>
 <li>What if multiple categories fit?</li>
-<li>When to express uncertainty?</li>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="fragment fade-up">
+<div class="fragment fade-up" data-fragment-index="2">
 <h3 class="text-center" id="evidence">Evidence</h3>
 <blockquote>
 <p>“There was no need to provide those carefully crafted 20,000 tokens of context and, worse than that, doing so actually <em>hurt</em> performance.”</p>
@@ -452,8 +451,8 @@ Dylan Pieper<br>Data &amp; Social Scientist
 </div>
 </div></div>
 </section>
-<section id="health-symptoms" class="slide level2">
-<h2>Health symptoms</h2>
+<section id="disease-symptoms" class="slide level2">
+<h2>Disease symptoms</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="fragment fade-up" style="text-align: center;">
@@ -468,19 +467,18 @@ Dylan Pieper<br>Data &amp; Social Scientist
 </div>
 </div></div>
 </section>
-<section id="health-symptoms-1" class="slide level2">
-<h2>Health symptoms</h2>
+<section id="disease-symptoms-1" class="slide level2">
+<h2>Disease symptoms</h2>
 <p>Data source: <a href="https://www.kaggle.com/datasets/niyarrbarman/symptom2disease/data">Kaggle</a>, public domain, <em>n</em> = 1,200</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>symptoms <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"cls_health/Symptom2Disease.csv"</span>)</span>
-<span id="cb9-2"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-5-mini"</span>)</span>
-<span id="cb9-3"><a href=""></a>type_health <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
-<span id="cb9-4"><a href=""></a>  <span class="at">diagnosis   =</span> <span class="fu">type_enum</span>(<span class="fu">unique</span>(symptoms<span class="sc">$</span>label)), <span class="co"># n = 24</span></span>
-<span id="cb9-5"><a href=""></a>  <span class="at">uncertainty =</span> <span class="fu">type_number</span>(<span class="st">"Err on the side of caution, and</span></span>
-<span id="cb9-6"><a href=""></a><span class="st">                             provide a score (0.00-1.00) of</span></span>
-<span id="cb9-7"><a href=""></a><span class="st">                             uncertainty in your diagnosis."</span>)</span>
-<span id="cb9-8"><a href=""></a>)</span>
-<span id="cb9-9"><a href=""></a><span class="fu">unique</span>(symptoms<span class="sc">$</span>label) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="2-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>symptoms <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"cls_health/Symptom2Disease.csv"</span>)</span>
+<span id="cb9-2"><a href=""></a>type_health <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
+<span id="cb9-3"><a href=""></a>  <span class="at">diagnosis   =</span> <span class="fu">type_enum</span>(<span class="fu">unique</span>(symptoms<span class="sc">$</span>label)), <span class="co"># n = 24</span></span>
+<span id="cb9-4"><a href=""></a>  <span class="at">uncertainty =</span> <span class="fu">type_number</span>(<span class="st">"Err on the side of caution, and</span></span>
+<span id="cb9-5"><a href=""></a><span class="st">                             provide a score (0.00-1.00) of</span></span>
+<span id="cb9-6"><a href=""></a><span class="st">                             uncertainty in your diagnosis."</span>)</span>
+<span id="cb9-7"><a href=""></a>)</span>
+<span id="cb9-8"><a href=""></a><span class="fu">unique</span>(symptoms<span class="sc">$</span>label) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Psoriasis"             "Varicose Veins"        "Typhoid"              
  [4] "Chicken pox"           "Impetigo"              "Dengue"               
@@ -489,37 +487,37 @@ Dylan Pieper<br>Data &amp; Social Scientist
 </div>
 </div>
 </section>
-<section id="health-symptoms-2" class="slide level2">
-<h2>Health symptoms</h2>
+<section id="disease-symptoms-2" class="slide level2">
+<h2>Disease symptoms</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>oai_dat <span class="ot">&lt;-</span> <span class="fu">parallel_chat_structured</span>(</span>
-<span id="cb11-2"><a href=""></a>  chat,</span>
+<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="3-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>oai_dat <span class="ot">&lt;-</span> <span class="fu">parallel_chat_structured</span>(</span>
+<span id="cb11-2"><a href=""></a>  <span class="at">chat =</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-5-mini"</span>),</span>
 <span id="cb11-3"><a href=""></a>  <span class="at">prompts =</span> <span class="fu">as.list</span>(symptoms<span class="sc">$</span>text),</span>
 <span id="cb11-4"><a href=""></a>  <span class="at">type =</span> type_health,</span>
 <span id="cb11-5"><a href=""></a>  <span class="at">include_cost =</span> <span class="cn">TRUE</span></span>
-<span id="cb11-6"><a href=""></a>)</span>
-<span id="cb11-7"><a href=""></a><span class="fu">mean</span>(oai_dat<span class="sc">$</span>diagnosis <span class="sc">==</span> symptoms<span class="sc">$</span>label) <span class="co"># tidymodels: 93% accuracy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.63</code></pre>
+<span id="cb11-6"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">mean</span>(oai_dat<span class="sc">$</span>uncertainty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5771333</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">sum</span>(oai_dat<span class="sc">$</span>cost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.97951</code></pre>
+<div class="fragment fade-up">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>accuracy <span class="ot">&lt;-</span> <span class="fu">mean</span>(oai_dat<span class="sc">$</span>diagnosis <span class="sc">==</span> symptoms<span class="sc">$</span>label)</span>
+<span id="cb12-2"><a href=""></a>confidence <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">mean</span>(oai_dat<span class="sc">$</span>uncertainty)</span>
+<span id="cb12-3"><a href=""></a>cost <span class="ot">&lt;-</span> <span class="fu">sum</span>(oai_dat<span class="sc">$</span>cost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
+<ul>
+<li class="fragment"><strong>Accuracy</strong>: 62% (vs.&nbsp;93% in tidymodels)</li>
+<li class="fragment"><strong>Confidence</strong>: 42%</li>
+<li class="fragment"><strong>Cost</strong>: $0.95</li>
+</ul>
 </section>
-<section id="health-symptoms-3" class="slide level2">
-<h2>Health symptoms</h2>
+<section id="disease-symptoms-3" class="slide level2">
+<h2>Disease symptoms</h2>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
-<section id="health-symptoms-4" class="slide level2">
-<h2>Health symptoms</h2>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<section id="disease-symptoms-4" class="slide level2">
+<h2>Disease symptoms</h2>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
 <section id="crimes" class="slide level2">
 <h2>Crimes</h2>
 <div class="columns">
@@ -541,82 +539,77 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <h2>Crimes</h2>
 <p>Schema source: <a href="https://www.science.org/doi/10.1126/sciadv.abq8123">Uniform Crime Classification Standard</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-5-mini"</span>)</span>
-<span id="cb17-2"><a href=""></a>type_crime <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
-<span id="cb17-3"><a href=""></a>  <span class="at">crime_type =</span> <span class="fu">type_enum</span>(</span>
-<span id="cb17-4"><a href=""></a>    <span class="fu">c</span>(<span class="st">"violent"</span>, <span class="st">"property"</span>, <span class="st">"drug"</span>, <span class="st">"dui offense"</span>, </span>
-<span id="cb17-5"><a href=""></a>      <span class="st">"public order"</span>, <span class="st">"criminal traffic"</span>, <span class="st">"not known/missing"</span>),</span>
-<span id="cb17-6"><a href=""></a>    <span class="st">"If violent and another type clearly applies, choose violent,</span></span>
-<span id="cb17-7"><a href=""></a><span class="st">     but only if intent to harm or injure is clearly present.</span></span>
-<span id="cb17-8"><a href=""></a><span class="st">     Threats, harassment, stalking, and similar are all violent."</span></span>
-<span id="cb17-9"><a href=""></a>  ),</span>
-<span id="cb17-10"><a href=""></a>  <span class="at">uncertainty =</span> <span class="fu">type_number</span>(</span>
-<span id="cb17-11"><a href=""></a>    <span class="st">"Your uncertainty in the classification responses and scores,</span></span>
-<span id="cb17-12"><a href=""></a><span class="st">     higher scores reflect unclear or difficult to classify descriptions,</span></span>
-<span id="cb17-13"><a href=""></a><span class="st">     ranging from 0.0 to 1.0."</span></span>
-<span id="cb17-14"><a href=""></a>  )</span>
-<span id="cb17-15"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>type_crime <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
+<span id="cb13-2"><a href=""></a>  <span class="at">crime_type =</span> <span class="fu">type_enum</span>(</span>
+<span id="cb13-3"><a href=""></a>    <span class="fu">c</span>(<span class="st">"violent"</span>, <span class="st">"property"</span>, <span class="st">"drug"</span>, <span class="st">"dui offense"</span>, </span>
+<span id="cb13-4"><a href=""></a>      <span class="st">"public order"</span>, <span class="st">"criminal traffic"</span>, <span class="st">"not known/missing"</span>),</span>
+<span id="cb13-5"><a href=""></a>    <span class="st">"If violent and another type clearly applies, choose violent,</span></span>
+<span id="cb13-6"><a href=""></a><span class="st">     but only if intent to harm or injure is clearly present.</span></span>
+<span id="cb13-7"><a href=""></a><span class="st">     Threats, harassment, stalking, and similar are all violent."</span></span>
+<span id="cb13-8"><a href=""></a>  ),</span>
+<span id="cb13-9"><a href=""></a>  <span class="at">uncertainty =</span> <span class="fu">type_number</span>(</span>
+<span id="cb13-10"><a href=""></a>    <span class="st">"Your uncertainty in the classification responses and scores,</span></span>
+<span id="cb13-11"><a href=""></a><span class="st">     higher scores reflect unclear or difficult to classify descriptions,</span></span>
+<span id="cb13-12"><a href=""></a><span class="st">     ranging from 0.0 to 1.0."</span></span>
+<span id="cb13-13"><a href=""></a>  )</span>
+<span id="cb13-14"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="crimes-2" class="slide level2">
 <h2>Crimes</h2>
 <p>Data source: <a href="http://www.pacourts.us">Pennsylvania Courts</a>, <em>n</em> = 1,537</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>crimes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"cls_offense/crimes.csv"</span>)</span>
-<span id="cb18-2"><a href=""></a>oai_dat <span class="ot">&lt;-</span> <span class="fu">parallel_chat_structured</span>( <span class="co"># use batch_chat() to save 50%</span></span>
-<span id="cb18-3"><a href=""></a>  chat,</span>
-<span id="cb18-4"><a href=""></a>  <span class="at">prompts =</span> <span class="fu">as.list</span>(crimes<span class="sc">$</span>description),</span>
-<span id="cb18-5"><a href=""></a>  <span class="at">type =</span> type_crime,</span>
-<span id="cb18-6"><a href=""></a>  <span class="at">include_cost =</span> <span class="cn">TRUE</span></span>
-<span id="cb18-7"><a href=""></a>)</span>
-<span id="cb18-8"><a href=""></a><span class="fu">mean</span>(oai_dat<span class="sc">$</span>uncertainty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1900325</code></pre>
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="2-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>crimes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"cls_offense/crimes.csv"</span>)</span>
+<span id="cb14-2"><a href=""></a>oai_dat <span class="ot">&lt;-</span> <span class="fu">parallel_chat_structured</span>(</span>
+<span id="cb14-3"><a href=""></a>  <span class="at">chat =</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-5-mini"</span>),</span>
+<span id="cb14-4"><a href=""></a>  <span class="at">prompts =</span> <span class="fu">as.list</span>(crimes<span class="sc">$</span>description),</span>
+<span id="cb14-5"><a href=""></a>  <span class="at">type =</span> type_crime,</span>
+<span id="cb14-6"><a href=""></a>  <span class="at">include_cost =</span> <span class="cn">TRUE</span></span>
+<span id="cb14-7"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">sum</span>(oai_dat<span class="sc">$</span>cost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.691708</code></pre>
-</div>
-</div>
-<p>Agreement with <a href="https://cjars-toc.isr.umich.edu">ML tool</a>: 80-82%</p>
+<ul>
+<li class="fragment">Certainty: 81%</li>
+<li class="fragment">Cost: $0.89</li>
+<li class="fragment">Agreement with <a href="https://cjars-toc.isr.umich.edu">ML tool</a>: 81%</li>
+</ul>
 </section>
 <section id="crimes-3" class="slide level2">
 <h2>Crimes</h2>
 <div style="font-size: 0.7em;">
 <div class="cell">
 <div class="cell-output-display">
-<table class="caption-top" style="width:100%;">
+<table class="caption-top">
 <caption>ML tool misclassifies animal cruelty as non-violent</caption>
 <colgroup>
-<col style="width: 50%">
-<col style="width: 12%">
-<col style="width: 7%">
+<col style="width: 56%">
 <col style="width: 13%">
-<col style="width: 15%">
+<col style="width: 9%">
+<col style="width: 8%">
+<col style="width: 10%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Description</th>
 <th style="text-align: left;">ML Tool</th>
+<th style="text-align: right;">ML Cert.</th>
 <th style="text-align: left;">LLM</th>
-<th style="text-align: right;">ML Confidence</th>
-<th style="text-align: right;">LLM Uncertainty</th>
+<th style="text-align: right;">LLM Cert.</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Aggravated Cruelty to Animals - Causing SBI or Death</td>
 <td style="text-align: left;">public order</td>
-<td style="text-align: left;">violent</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">0.15</td>
+<td style="text-align: left;">violent</td>
+<td style="text-align: right;">0.9</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Aggravated Cruelty to Animals - Torture</td>
+<td style="text-align: left;">Cruelty to Animals</td>
 <td style="text-align: left;">public order</td>
-<td style="text-align: left;">violent</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">0.05</td>
+<td style="text-align: left;">violent</td>
+<td style="text-align: right;">0.8</td>
 </tr>
 </tbody>
 </table>
@@ -624,53 +617,49 @@ Dylan Pieper<br>Data &amp; Social Scientist
 </div>
 </div>
 <div class="fragment zoom-in" style="text-align: center;">
-<p>High confidence ≠ correct classification</p>
+<p>High certainty ≠ correct classification</p>
 </div>
 </section>
 <section id="crimes-4" class="slide level2">
 <h2>Crimes</h2>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
 <section id="crimes-5" class="slide level2">
 <h2>Crimes</h2>
-<div style="font-size: 0.50em;">
+<div style="font-size: 0.8em;">
 <div class="cell">
 <div class="cell-output-display">
-<table class="caption-top" style="width:100%;">
+<table class="caption-top">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 45%">
+<col style="width: 49%">
+<col style="width: 8%">
 <col style="width: 10%">
-<col style="width: 6%">
-<col style="width: 15%">
-<col style="width: 5%">
+<col style="width: 20%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Case</th>
 <th style="text-align: left;">Description</th>
 <th style="text-align: left;">ML Tool</th>
-<th style="text-align: right;">ML?</th>
+<th style="text-align: right;">ML Cert.</th>
 <th style="text-align: left;">LLM</th>
-<th style="text-align: right;">LLM?</th>
+<th style="text-align: right;">LLM Cert.</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">ML Confident</td>
-<td style="text-align: left;">Assigning Blank Cert</td>
-<td style="text-align: left;">property</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: left;">public order</td>
-<td style="text-align: right;">0.7</td>
+<td style="text-align: left;">Accidents Involving Death Or Personal In…</td>
+<td style="text-align: left;">violent</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">not known/missing</td>
+<td style="text-align: right;">0.10</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">LLM Confident</td>
 <td style="text-align: left;">BAC .02 or Higher - 4th Off or Sub Off</td>
 <td style="text-align: left;">drug</td>
-<td style="text-align: right;">0.570</td>
+<td style="text-align: right;">0.43</td>
 <td style="text-align: left;">dui offense</td>
-<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.95</td>
 </tr>
 </tbody>
 </table>
@@ -722,13 +711,10 @@ Dylan Pieper<br>Data &amp; Social Scientist
 <div class="fragment fade-up" data-fragment-index="1">
 <h3 id="first-run">First Run</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-5-mini"</span>)</span>
-<span id="cb22-2"><a href=""></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Tell an AI joke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-5-mini"</span>)</span>
+<span id="cb15-2"><a href=""></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Tell one joke about R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>I told my AI to tell me a joke. It printed: "Initializing sense_of_humor... 
-failed. Please reboot human." 
-
-Want another?</code></pre>
+<pre><code>I asked R for a date — it returned NA.</code></pre>
 </div>
 </div>
 </div>
@@ -736,28 +722,26 @@ Want another?</code></pre>
 <div class="fragment fade-up" data-fragment-index="2">
 <h3 id="second-run">Second Run</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-5-mini"</span>)</span>
-<span id="cb24-2"><a href=""></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Tell an AI joke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>chat <span class="ot">&lt;-</span> <span class="fu">chat</span>(<span class="st">"openai/gpt-5-mini"</span>)</span>
+<span id="cb17-2"><a href=""></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Tell one joke about R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Why did the neural network go to therapy? It had too many unresolved layers.
-
-Want another?</code></pre>
+<pre><code>Why did the R programmer get promoted? Because they always knew how to apply() 
+themselves.</code></pre>
 </div>
 </div>
 </div>
 </div></div>
 <div class="fragment fade-up" data-fragment-index="3" style="text-align: center; margin-top: 30px;">
 <p><strong>Same input → Different outputs</strong></p>
-<p><em>More consistent when prompts are specific</em></p>
 <p><em>Always validate and look at the responses</em></p>
 </div>
 </section>
 <section id="takeaways" class="slide level2">
 <h2>Takeaways</h2>
 <ul>
-<li class="fragment">LLMs are accessible tools for <strong>extraction</strong> and <strong>classification</strong>, but be careful</li>
+<li class="fragment">LLMs are accessible tools for <strong>unstructured data analysis</strong></li>
 <li class="fragment">Use minimal prompting that focuses on <strong>structure</strong> and <strong>task limitations</strong></li>
-<li class="fragment">Use <strong>uncertainty</strong> scores to guide human review</li>
+<li class="fragment">Use <strong>uncertainty scores</strong> and <strong>human review</strong></li>
 <li class="fragment">Use LLMs to <strong>develop</strong> and <strong>validate</strong> existing tools</li>
 </ul>
 </section>
@@ -773,13 +757,13 @@ Want another?</code></pre>
 💻 <a href="https://github.com/dylanpieper">github.com/dylanpieper</a></p>
 </div>
 <h3 id="questions">Questions?</h3>
-<p><em>Let’s discuss data!</em></p>
+<p><em>Let’s discuss LLMs!</em></p>
 </div><div class="column">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center" width="384"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center" width="384"></p>
 </figure>
 </div>
 </div>

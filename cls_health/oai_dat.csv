@@ -1,0 +1,1201 @@
+"","diagnosis","uncertainty","cost"
+"1","Psoriasis",0.65,0.00062325
+"2","Psoriasis",0.35,0.0004935
+"3","Arthritis",0.4,0.00036925
+"4","Psoriasis",0.2,0.00036775
+"5","Psoriasis",0.3,0.000494
+"6","Psoriasis",0.6,0.000876
+"7","allergy",0.6,0.00126225
+"8","allergy",0.7,0.00049375
+"9","Psoriasis",0.65,0.00062275
+"10","allergy",0.7,0.00113475
+"11","diabetes",0.9,0.00049375
+"12","allergy",0.8,0.0015205
+"13","Psoriasis",0.65,0.0004955
+"14","Psoriasis",0.55,0.0007495
+"15","Psoriasis",0.35,0.00049525
+"16","Psoriasis",0.3,0.00049475
+"17","Psoriasis",0.25,0.00049475
+"18","Psoriasis",0.45,0.000626
+"19","Psoriasis",0.65,0.0010075
+"20","Psoriasis",0.25,0.0004945
+"21","Psoriasis",0.4,0.00049575
+"22","Psoriasis",0.35,0.00036875
+"23","Psoriasis",0.3,0.00049325
+"24","Arthritis",0.7,0.0007525
+"25","Psoriasis",0.1,0.00036625
+"26","allergy",0.7,0.00087775
+"27","Psoriasis",0.7,0.00075
+"28","Psoriasis",0.7,0.000498
+"29","Psoriasis",0.6,0.0007525
+"30","Psoriasis",0.25,0.000367
+"31","Psoriasis",0.25,0.000496
+"32","Psoriasis",0.4,0.00062475
+"33","Psoriasis",0.3,0.00049375
+"34","Psoriasis",0.75,0.00062175
+"35","Psoriasis",0.2,0.00062375
+"36","Psoriasis",0.35,0.00049475
+"37","Fungal infection",0.7,0.000882
+"38","Psoriasis",0.55,0.00062425
+"39","Psoriasis",0.3,0.00062275
+"40","Psoriasis",0.2,0.00062525
+"41","Psoriasis",0.3,0.00062525
+"42","Psoriasis",0.4,0.00088025
+"43","Psoriasis",0.3,0.00049675
+"44","Psoriasis",0.35,0.0007495
+"45","Psoriasis",0.25,0.00049375
+"46","Psoriasis",0.3,0.000495
+"47","Fungal infection",0.75,0.001266
+"48","Psoriasis",0.75,0.0006225
+"49","Psoriasis",0.2,0.00049625
+"50","Psoriasis",0.3,0.000495
+"51","Varicose Veins",0.45,0.000505
+"52","Varicose Veins",0.7,0.000886
+"53","Varicose Veins",0.45,0.00062875
+"54","Varicose Veins",0.2,0.000373
+"55","Varicose Veins",0.35,0.00062875
+"56","Varicose Veins",0.65,0.0006285
+"57","Varicose Veins",0.6,0.000629
+"58","Varicose Veins",0.75,0.0006285
+"59","Varicose Veins",0.25,0.0003725
+"60","Varicose Veins",0.4,0.00049975
+"61","Varicose Veins",0.7,0.00075475
+"62","Varicose Veins",0.25,0.000502
+"63","Varicose Veins",0.4,0.00062775
+"64","Varicose Veins",0.25,0.000373
+"65","Varicose Veins",0.6,0.00050125
+"66","Varicose Veins",0.6,0.00049725
+"67","Varicose Veins",0.85,0.00088175
+"68","Varicose Veins",0.4,0.00049875
+"69","Varicose Veins",0.35,0.0003705
+"70","Varicose Veins",0.35,0.0004995
+"71","allergy",0.75,0.000878
+"72","Varicose Veins",0.3,0.00050025
+"73","drug reaction",0.85,0.00087675
+"74","Varicose Veins",0.25,0.0003725
+"75","Varicose Veins",0.3,0.00062725
+"76","Varicose Veins",0.3,0.00050075
+"77","Varicose Veins",0.7,0.00088525
+"78","Varicose Veins",0.9,0.00075575
+"79","Varicose Veins",0.4,0.0005015
+"80","Varicose Veins",0.3,0.000629
+"81","Varicose Veins",0.45,0.00050125
+"82","Varicose Veins",0.65,0.000757
+"83","Varicose Veins",0.2,0.00037175
+"84","Varicose Veins",0.8,0.00062725
+"85","Varicose Veins",0.75,0.0007545
+"86","Varicose Veins",0.3,0.0006295
+"87","allergy",0.75,0.0008785
+"88","Varicose Veins",0.3,0.00050125
+"89","Varicose Veins",0.3,0.0004995
+"90","Varicose Veins",0.45,0.000627
+"91","Varicose Veins",0.45,0.00075675
+"92","Varicose Veins",0.15,0.00049875
+"93","Varicose Veins",0.8,0.0005005
+"94","Varicose Veins",0.3,0.00062925
+"95","Varicose Veins",0.3,0.00050075
+"96","Varicose Veins",0.3,0.00075625
+"97","Varicose Veins",0.3,0.00062725
+"98","Varicose Veins",0.35,5e-04
+"99","Varicose Veins",0.75,0.00063025
+"100","Varicose Veins",0.6,0.000501
+"101","Typhoid",0.4,0.000499
+"102","allergy",0.9,0.0008775
+"103","Typhoid",0.65,0.000496
+"104","Typhoid",0.75,0.001007
+"105","Typhoid",0.7,0.000755
+"106","peptic ulcer disease",0.9,0.001012
+"107","Typhoid",0.75,0.001135
+"108","Typhoid",0.65,0.00062275
+"109","gastroesophageal reflux disease",0.75,0.001014
+"110","Typhoid",0.9,0.0013915
+"111","Typhoid",0.7,0.00075225
+"112","Typhoid",0.85,0.001137
+"113","peptic ulcer disease",0.85,0.0010095
+"114","peptic ulcer disease",0.85,0.0007565
+"115","peptic ulcer disease",0.85,0.000626
+"116","gastroesophageal reflux disease",0.9,0.0015265
+"117","Typhoid",0.65,0.0008805
+"118","Typhoid",0.85,0.001778
+"119","peptic ulcer disease",0.95,0.00152175
+"120","Typhoid",0.65,0.00075175
+"121","Typhoid",0.8,0.0010065
+"122","Typhoid",0.85,0.000751
+"123","peptic ulcer disease",0.85,0.00062575
+"124","Typhoid",0.8,0.00088025
+"125","Typhoid",0.6,0.00088
+"126","Typhoid",0.9,0.00216175
+"127","Typhoid",0.75,0.00075275
+"128","Typhoid",0.7,0.0012665
+"129","Typhoid",0.85,0.0007505
+"130","Typhoid",0.75,0.000751
+"131","Typhoid",0.8,0.00087925
+"132","Typhoid",0.85,0.001136
+"133","Typhoid",0.8,0.000625
+"134","Typhoid",0.7,0.000626
+"135","peptic ulcer disease",0.75,0.000884
+"136","Typhoid",0.8,0.00100775
+"137","Typhoid",0.85,0.001136
+"138","peptic ulcer disease",0.85,0.00113925
+"139","Typhoid",0.75,0.001393
+"140","peptic ulcer disease",0.8,0.00062725
+"141","peptic ulcer disease",0.7,0.000624
+"142","Typhoid",0.75,0.00101025
+"143","peptic ulcer disease",0.75,0.000757
+"144","Typhoid",0.7,0.000753
+"145","Typhoid",0.65,0.000625
+"146","Typhoid",0.65,0.00062825
+"147","Typhoid",0.8,0.001011
+"148","Typhoid",0.7,0.001009
+"149","peptic ulcer disease",0.99,0.00190725
+"150","Typhoid",0.75,0.0013975
+"151","allergy",0.7,0.000877
+"152","diabetes",0.95,0.0007505
+"153","Chicken pox",0.7,0.00062525
+"154","gastroesophageal reflux disease",0.95,0.0011385
+"155","Dengue",0.65,0.00139175
+"156","Common Cold",0.85,0.001644
+"157","allergy",0.7,0.0006235
+"158","allergy",0.75,0.00075
+"159","allergy",0.75,0.000878
+"160","Typhoid",0.9,0.00100525
+"161","allergy",0.6,0.00075025
+"162","Dengue",0.85,0.00152325
+"163","allergy",0.8,0.00100675
+"164","diabetes",0.92,0.0008785
+"165","allergy",0.7,0.00074975
+"166","allergy",0.7,0.00062325
+"167","Dengue",0.8,0.00087825
+"168","Dengue",0.75,0.000753
+"169","allergy",0.7,0.00088025
+"170","allergy",0.7,0.00074925
+"171","allergy",0.65,0.00049125
+"172","Dengue",0.8,0.00100875
+"173","Typhoid",0.85,0.00088125
+"174","Dengue",0.75,0.0012645
+"175","allergy",0.75,0.00074875
+"176","Chicken pox",0.45,0.00100925
+"177","Dengue",0.6,0.00088125
+"178","allergy",0.7,0.00100525
+"179","Dengue",0.8,0.00152025
+"180","drug reaction",0.85,0.00100625
+"181","allergy",0.85,0.0006205
+"182","Typhoid",0.7,0.00074975
+"183","allergy",0.85,0.0012615
+"184","allergy",0.85,0.0006205
+"185","Chicken pox",0.8,0.0013935
+"186","allergy",0.7,0.00062275
+"187","Dengue",0.65,0.000753
+"188","Dengue",0.35,0.0008815
+"189","Chicken pox",0.7,0.000752
+"190","Dengue",0.75,0.0010095
+"191","Chicken pox",0.75,0.00152275
+"192","Typhoid",0.85,0.000882
+"193","Typhoid",0.8,0.001011
+"194","Chicken pox",0.45,0.00087875
+"195","Chicken pox",0.25,0.00062475
+"196","allergy",0.7,0.00100725
+"197","Typhoid",0.75,0.0011385
+"198","Chicken pox",0.45,0.0010105
+"199","Chicken pox",0.45,0.00062875
+"200","Chicken pox",0.3,0.0007525
+"201","Impetigo",0.7,0.00088025
+"202","Chicken pox",0.45,0.000626
+"203","Impetigo",0.15,0.000496
+"204","Impetigo",0.65,0.0011375
+"205","Impetigo",0.75,0.00062525
+"206","allergy",0.85,0.00075
+"207","Chicken pox",0.4,0.000753
+"208","Impetigo",0.6,0.00126525
+"209","Impetigo",0.8,0.00088125
+"210","Impetigo",0.35,0.00062325
+"211","Impetigo",0.25,0.00049825
+"212","Impetigo",0.7,0.000882
+"213","Impetigo",0.45,0.0011375
+"214","Impetigo",0.45,0.00062625
+"215","Chicken pox",0.4,0.00075275
+"216","allergy",0.8,0.0010045
+"217","Impetigo",0.7,0.0008815
+"218","Impetigo",0.15,0.000498
+"219","Impetigo",0.6,0.0013935
+"220","Impetigo",0.65,0.00075275
+"221","Impetigo",0.2,0.00087925
+"222","Impetigo",0.25,0.00049725
+"223","Impetigo",0.75,0.00101175
+"224","Impetigo",0.45,0.00062575
+"225","Impetigo",0.25,0.00036925
+"226","Chicken pox",0.45,0.0010105
+"227","Chicken pox",0.4,0.0008835
+"228","Impetigo",0.25,0.00049675
+"229","Chicken pox",0.4,0.00075325
+"230","Impetigo",0.2,0.000499
+"231","Acne",0.75,0.00101025
+"232","drug reaction",0.85,0.00139125
+"233","Chicken pox",0.3,0.0007525
+"234","Impetigo",0.2,0.00049625
+"235","Impetigo",0.65,0.0008825
+"236","Chicken pox",0.6,0.00113625
+"237","Impetigo",0.65,0.0006255
+"238","Impetigo",0.55,0.00075425
+"239","Impetigo",0.3,0.0006245
+"240","Impetigo",0.1,0.0004945
+"241","Impetigo",0.2,0.000498
+"242","Impetigo",0.6,0.00113825
+"243","Impetigo",0.45,0.00062575
+"244","Impetigo",0.25,0.00049825
+"245","Acne",0.75,0.00075425
+"246","Chicken pox",0.65,0.001137
+"247","Impetigo",0.3,0.0004975
+"248","Impetigo",0.45,0.0006255
+"249","Chicken pox",0.45,0.00101025
+"250","Impetigo",0.55,0.00075425
+"251","Dengue",0.7,0.0008795
+"252","Dengue",0.65,0.001008
+"253","Arthritis",0.8,0.00049725
+"254","Dengue",0.7,0.00075
+"255","Dengue",0.3,0.00036775
+"256","allergy",0.65,0.00062275
+"257","Dengue",0.35,0.0006235
+"258","Dengue",0.3,0.00088075
+"259","Chicken pox",0.65,0.0010075
+"260","Dengue",0.7,0.000753
+"261","Dengue",0.6,0.000626
+"262","Dengue",0.75,0.00100725
+"263","Dengue",0.45,0.0010095
+"264","Dengue",0.65,0.00062575
+"265","Dengue",0.65,0.00075325
+"266","Dengue",0.75,0.000879
+"267","allergy",0.8,0.0008795
+"268","Dengue",0.65,0.0011375
+"269","Dengue",0.65,0.0007525
+"270","Dengue",0.6,0.001009
+"271","Chicken pox",0.65,0.000753
+"272","Chicken pox",0.35,0.00075025
+"273","Dengue",0.4,0.00062575
+"274","Dengue",0.75,0.00113825
+"275","Dengue",0.75,0.00088375
+"276","Dengue",0.3,0.000624
+"277","Chicken pox",0.7,0.0011375
+"278","Dengue",0.75,0.000626
+"279","peptic ulcer disease",0.75,0.0013955
+"280","allergy",0.85,0.0015205
+"281","allergy",0.7,0.00062425
+"282","Dengue",0.25,0.0008815
+"283","Dengue",0.65,0.0007515
+"284","Dengue",0.7,0.00062475
+"285","Dengue",0.75,0.00075325
+"286","Dengue",0.7,0.00062775
+"287","Migraine",0.65,0.00062375
+"288","Malaria",0.85,0.0012605
+"289","allergy",0.85,0.00087875
+"290","Dengue",0.65,0.000755
+"291","Dengue",0.3,0.00062725
+"292","Dengue",0.35,0.00050225
+"293","Dengue",0.8,0.0007545
+"294","Dengue",0.3,0.00049675
+"295","Dengue",0.6,0.0011385
+"296","Arthritis",0.87,0.000627
+"297","Dengue",0.3,0.00062475
+"298","Dengue",0.25,0.000754
+"299","Malaria",0.8,0.00113625
+"300","Dengue",0.75,0.000884
+"301","allergy",0.45,0.0007515
+"302","allergy",0.7,0.00088375
+"303","allergy",0.7,0.0008805
+"304","allergy",0.75,0.00126375
+"305","allergy",0.7,0.0010085
+"306","allergy",0.7,0.00100825
+"307","Fungal infection",0.65,0.0011405
+"308","allergy",0.65,0.00075475
+"309","allergy",0.8,0.00088275
+"310","allergy",0.7,0.00075175
+"311","allergy",0.75,0.00062375
+"312","allergy",0.75,0.00087925
+"313","allergy",0.85,0.00139075
+"314","Fungal infection",0.6,0.0011405
+"315","allergy",0.75,0.0007535
+"316","allergy",0.75,0.00139475
+"317","allergy",0.75,0.00113925
+"318","allergy",0.8,0.0008835
+"319","Fungal infection",0.75,0.0010125
+"320","Fungal infection",0.68,0.00114125
+"321","Fungal infection",0.75,0.00100975
+"322","Psoriasis",0.6,0.00139475
+"323","allergy",0.85,0.00101
+"324","allergy",0.75,0.00100925
+"325","allergy",0.65,0.00113925
+"326","allergy",0.7,0.00101225
+"327","allergy",0.8,0.00101075
+"328","Fungal infection",0.75,0.0008855
+"329","allergy",0.7,0.0011395
+"330","allergy",0.75,0.0012675
+"331","Fungal infection",0.7,0.0010115
+"332","Psoriasis",0.75,0.0007525
+"333","Fungal infection",0.75,0.000883
+"334","allergy",0.8,0.00088375
+"335","Psoriasis",0.8,0.00062525
+"336","Psoriasis",0.7,0.00075425
+"337","Psoriasis",0.8,0.0010085
+"338","allergy",0.9,0.0013945
+"339","allergy",0.8,0.001137
+"340","allergy",0.8,0.0015205
+"341","allergy",0.85,0.00126375
+"342","allergy",0.8,0.00101025
+"343","Fungal infection",0.72,0.0008845
+"344","allergy",0.8,0.0011375
+"345","Fungal infection",0.7,0.00114025
+"346","Fungal infection",0.75,0.0010125
+"347","Fungal infection",0.6,0.00075675
+"348","allergy",0.7,0.0015215
+"349","Fungal infection",0.75,0.0011415
+"350","allergy",0.75,0.0007535
+"351","Common Cold",0.65,0.00075275
+"352","Pneumonia",0.7,0.000885
+"353","Pneumonia",0.8,0.0006265
+"354","Pneumonia",0.65,0.00101125
+"355","Common Cold",0.7,0.0012625
+"356","Common Cold",0.8,0.000751
+"357","Common Cold",0.65,0.00088125
+"358","Common Cold",0.85,0.001137
+"359","Pneumonia",0.75,0.0008845
+"360","Common Cold",0.75,0.000753
+"361","Common Cold",0.3,0.000625
+"362","Common Cold",0.55,0.00088025
+"363","Common Cold",0.45,0.0006245
+"364","Common Cold",0.65,0.000753
+"365","Common Cold",0.4,0.00062425
+"366","Common Cold",0.35,0.0006245
+"367","Common Cold",0.4,0.00075525
+"368","allergy",0.45,0.00088225
+"369","Common Cold",0.45,0.00062675
+"370","allergy",0.4,0.00114175
+"371","allergy",0.4,0.00075775
+"372","allergy",0.45,0.00088425
+"373","allergy",0.35,0.00062825
+"374","allergy",0.45,0.0010115
+"375","Bronchial Asthma",0.82,0.00152825
+"376","allergy",0.8,0.00152075
+"377","Pneumonia",0.65,0.0016545
+"378","Common Cold",0.65,0.00088125
+"379","Common Cold",0.65,0.0010115
+"380","Common Cold",0.7,0.00075425
+"381","Common Cold",0.65,0.00075375
+"382","Common Cold",0.75,0.000756
+"383","Pneumonia",0.7,0.00075925
+"384","Pneumonia",0.8,0.00114025
+"385","Pneumonia",0.75,0.00075625
+"386","Pneumonia",0.9,0.00126875
+"387","Common Cold",0.8,0.00088225
+"388","Pneumonia",0.75,0.0008845
+"389","Common Cold",0.45,0.00075425
+"390","Common Cold",0.45,0.00062725
+"391","Pneumonia",0.7,0.00062975
+"392","Pneumonia",0.85,0.000756
+"393","Pneumonia",0.35,0.0008835
+"394","Pneumonia",0.65,0.00075725
+"395","Common Cold",0.75,0.00100975
+"396","Common Cold",0.45,0.001011
+"397","Common Cold",0.7,0.00075375
+"398","Common Cold",0.85,0.0010105
+"399","allergy",0.3,0.0007565
+"400","Common Cold",0.6,0.001139
+"401","Pneumonia",0.25,0.000373
+"402","Pneumonia",0.35,0.00075575
+"403","Pneumonia",0.75,0.000629
+"404","Pneumonia",0.6,0.00075575
+"405","Pneumonia",0.3,0.00050275
+"406","Pneumonia",0.25,0.0005035
+"407","Pneumonia",0.25,0.00050075
+"408","Pneumonia",0.45,0.00075675
+"409","Pneumonia",0.35,0.00050125
+"410","Pneumonia",0.35,0.000628
+"411","Pneumonia",0.25,0.0004995
+"412","Pneumonia",0.75,0.0007585
+"413","Pneumonia",0.35,0.0006305
+"414","Pneumonia",0.35,0.00050125
+"415","Pneumonia",0.45,0.00062975
+"416","Pneumonia",0.35,0.00062875
+"417","Pneumonia",0.35,0.000629
+"418","Pneumonia",0.6,0.00088675
+"419","Pneumonia",0.25,0.00063
+"420","Pneumonia",0.65,0.00075975
+"421","Pneumonia",0.7,0.00075825
+"422","Pneumonia",0.65,0.000758
+"423","Pneumonia",0.4,0.000886
+"424","Pneumonia",0.8,0.00088625
+"425","Pneumonia",0.35,0.000502
+"426","Pneumonia",0.35,0.0005015
+"427","Pneumonia",0.4,0.00075875
+"428","Pneumonia",0.7,0.00063125
+"429","Pneumonia",0.4,0.0008855
+"430","Pneumonia",0.3,0.00062925
+"431","Pneumonia",0.55,0.00139775
+"432","Pneumonia",0.35,0.00050125
+"433","Pneumonia",0.2,0.000502
+"434","Pneumonia",0.4,0.000502
+"435","Pneumonia",0.55,0.0007565
+"436","Pneumonia",0.4,0.00063075
+"437","Pneumonia",0.45,0.000502
+"438","Pneumonia",0.45,0.00063
+"439","Pneumonia",0.6,0.000502
+"440","Pneumonia",0.3,0.000758
+"441","Pneumonia",0.6,0.0008855
+"442","Pneumonia",0.65,0.00063025
+"443","Pneumonia",0.45,0.00050225
+"444","Pneumonia",0.7,0.00075825
+"445","Pneumonia",0.6,0.00088525
+"446","Pneumonia",0.75,0.00075675
+"447","Pneumonia",0.65,0.0007595
+"448","Pneumonia",0.75,0.0007595
+"449","Pneumonia",0.45,0.000759
+"450","Pneumonia",0.35,0.00063075
+"451","Dimorphic Hemorrhoids",0.3,0.00050275
+"452","Dimorphic Hemorrhoids",0.4,0.0007585
+"453","Dimorphic Hemorrhoids",0.65,0.0005055
+"454","Dimorphic Hemorrhoids",0.35,0.0005045
+"455","Dimorphic Hemorrhoids",0.45,0.00088925
+"456","Dimorphic Hemorrhoids",0.7,0.000504
+"457","Dimorphic Hemorrhoids",0.7,0.00063275
+"458","Dimorphic Hemorrhoids",0.4,0.00063125
+"459","Dimorphic Hemorrhoids",0.4,0.00050275
+"460","Dimorphic Hemorrhoids",0.6,0.00076075
+"461","Dimorphic Hemorrhoids",0.6,0.0006315
+"462","Dimorphic Hemorrhoids",0.7,0.00063225
+"463","Dimorphic Hemorrhoids",0.75,0.000506
+"464","Dimorphic Hemorrhoids",0.35,0.00063325
+"465","Dimorphic Hemorrhoids",0.7,0.00063325
+"466","Dimorphic Hemorrhoids",0.45,0.0007615
+"467","Dimorphic Hemorrhoids",0.3,0.000634
+"468","Dimorphic Hemorrhoids",0.38,0.00063425
+"469","Dimorphic Hemorrhoids",0.5,0.00089075
+"470","Dimorphic Hemorrhoids",0.3,0.00050625
+"471","Dimorphic Hemorrhoids",0.4,0.00089075
+"472","Dimorphic Hemorrhoids",0.35,0.00063425
+"473","Dimorphic Hemorrhoids",0.4,0.0006345
+"474","Dimorphic Hemorrhoids",0.3,0.000633
+"475","Dimorphic Hemorrhoids",0.65,0.00076075
+"476","Dimorphic Hemorrhoids",0.4,0.000505
+"477","Dimorphic Hemorrhoids",0.4,0.00050625
+"478","Dimorphic Hemorrhoids",0.35,0.0003785
+"479","Dimorphic Hemorrhoids",0.35,0.0005025
+"480","Dimorphic Hemorrhoids",0.6,0.00075975
+"481","Dimorphic Hemorrhoids",0.4,0.00063175
+"482","Dimorphic Hemorrhoids",0.4,0.0005055
+"483","Dimorphic Hemorrhoids",0.35,0.000634
+"484","Dimorphic Hemorrhoids",0.45,0.000635
+"485","Dimorphic Hemorrhoids",0.6,0.00076125
+"486","Dimorphic Hemorrhoids",0.45,0.0005075
+"487","Dimorphic Hemorrhoids",0.65,0.00063475
+"488","Dimorphic Hemorrhoids",0.35,0.0005025
+"489","Dimorphic Hemorrhoids",0.45,0.00063125
+"490","Dimorphic Hemorrhoids",0.7,0.00063175
+"491","Dimorphic Hemorrhoids",0.55,0.001019
+"492","Dimorphic Hemorrhoids",0.45,0.00037725
+"493","Dimorphic Hemorrhoids",0.7,0.000506
+"494","Dimorphic Hemorrhoids",0.4,0.0005075
+"495","Dimorphic Hemorrhoids",0.6,0.00063375
+"496","Dimorphic Hemorrhoids",0.4,0.00076325
+"497","Dimorphic Hemorrhoids",0.55,0.0006355
+"498","Dimorphic Hemorrhoids",0.55,0.00050675
+"499","Dimorphic Hemorrhoids",0.45,0.000505
+"500","Dimorphic Hemorrhoids",0.35,0.000632
+"501","Arthritis",0.7,0.0006265
+"502","Arthritis",0.75,0.000499
+"503","Arthritis",0.45,0.000371
+"504","Arthritis",0.75,0.00049725
+"505","Arthritis",0.7,0.0006255
+"506","Arthritis",0.85,0.00075325
+"507","Arthritis",0.75,0.0004975
+"508","Arthritis",0.85,0.000625
+"509","Arthritis",0.75,0.00049725
+"510","Arthritis",0.75,0.00062675
+"511","Arthritis",0.4,0.0004985
+"512","Arthritis",0.65,0.00075425
+"513","Arthritis",0.8,0.00075375
+"514","Arthritis",0.8,0.000627
+"515","Arthritis",0.8,0.0004985
+"516","Arthritis",0.85,0.00088225
+"517","Arthritis",0.45,0.001011
+"518","Arthritis",0.75,0.000626
+"519","Arthritis",0.6,0.000754
+"520","Arthritis",0.75,0.000626
+"521","Arthritis",0.4,0.0004985
+"522","Arthritis",0.8,0.00049825
+"523","Arthritis",0.75,0.00101
+"524","Arthritis",0.65,0.00075475
+"525","Cervical spondylosis",0.65,0.00063325
+"526","Arthritis",0.8,0.000626
+"527","Cervical spondylosis",0.75,0.00063325
+"528","Arthritis",0.45,0.0006265
+"529","Arthritis",0.7,0.000626
+"530","Arthritis",0.78,0.000754
+"531","Arthritis",0.45,0.00036975
+"532","Arthritis",0.45,0.00049725
+"533","Arthritis",0.6,0.00062525
+"534","Arthritis",0.8,0.000752
+"535","Arthritis",0.65,0.0004985
+"536","Arthritis",0.75,0.00101025
+"537","Arthritis",0.75,0.00062725
+"538","Arthritis",0.75,0.000626
+"539","Cervical spondylosis",0.75,0.00076275
+"540","Arthritis",0.7,0.00049875
+"541","Arthritis",0.7,0.00062675
+"542","Arthritis",0.7,0.000627
+"543","Cervical spondylosis",0.65,0.00063475
+"544","Arthritis",0.75,0.00062675
+"545","Arthritis",0.8,0.000624
+"546","Arthritis",0.7,0.00075275
+"547","Cervical spondylosis",0.7,0.000634
+"548","Cervical spondylosis",0.65,0.0005065
+"549","Cervical spondylosis",0.85,0.0010185
+"550","Cervical spondylosis",0.75,0.0007625
+"551","Acne",0.35,0.0004945
+"552","Acne",0.18,0.0004935
+"553","Acne",0.15,0.00049475
+"554","Acne",0.2,0.000622
+"555","Acne",0.35,0.0004945
+"556","Acne",0.25,0.0004935
+"557","Acne",0.35,0.00062175
+"558","Acne",0.45,0.00062175
+"559","Acne",0.25,0.0003655
+"560","Acne",0.25,0.00036575
+"561","Acne",0.2,0.0004935
+"562","Acne",0.35,0.0004935
+"563","Acne",0.3,0.00049325
+"564","Acne",0.6,0.00062175
+"565","Acne",0.35,0.00049375
+"566","Acne",0.25,0.00049475
+"567","Acne",0.25,0.00049275
+"568","Acne",0.7,0.0008815
+"569","Acne",0.65,0.00100725
+"570","Acne",0.2,0.00049525
+"571","Acne",0.3,0.0006235
+"572","Acne",0.4,0.0008805
+"573","Acne",0.4,0.0004955
+"574","Acne",0.65,0.00075125
+"575","Acne",0.55,0.0008795
+"576","Acne",0.6,0.00087825
+"577","Acne",0.35,0.000494
+"578","drug reaction",0.85,0.00100925
+"579","Acne",0.7,0.00075225
+"580","Acne",0.3,0.00062025
+"581","Acne",0.35,0.0004935
+"582","Acne",0.55,0.00062475
+"583","Acne",0.6,0.00100975
+"584","Acne",0.45,0.00062225
+"585","Acne",0.25,0.00075125
+"586","Acne",0.7,0.00075225
+"587","Acne",0.45,0.00036725
+"588","Acne",0.4,0.0007525
+"589","Acne",0.35,0.00088075
+"590","Acne",0.65,0.001008
+"591","Acne",0.7,0.0011365
+"592","Acne",0.4,0.0007515
+"593","Acne",0.65,0.00088025
+"594","Acne",0.6,0.00087825
+"595","Acne",0.35,0.00062275
+"596","Acne",0.3,0.00062225
+"597","Acne",0.35,0.00062425
+"598","Acne",0.65,0.001008
+"599","Acne",0.3,0.00062275
+"600","Acne",0.35,0.000494
+"601","Pneumonia",0.25,0.0004995
+"602","Pneumonia",0.6,0.00062525
+"603","Pneumonia",0.3,0.00062825
+"604","Pneumonia",0.65,0.0008835
+"605","Pneumonia",0.3,0.0006285
+"606","Pneumonia",0.35,0.000628
+"607","Pneumonia",0.75,0.00062625
+"608","Pneumonia",0.55,0.00050075
+"609","Pneumonia",0.4,0.00063175
+"610","Pneumonia",0.3,0.000502
+"611","Pneumonia",0.4,0.00063125
+"612","Pneumonia",0.35,0.00063075
+"613","Pneumonia",0.45,0.00037475
+"614","Pneumonia",0.35,0.000628
+"615","Pneumonia",0.4,0.00049975
+"616","Pneumonia",0.35,0.00037325
+"617","Pneumonia",0.3,0.00037225
+"618","Pneumonia",0.4,0.00088675
+"619","Pneumonia",0.25,0.00050575
+"620","Pneumonia",0.45,0.00050475
+"621","Pneumonia",0.3,0.00050425
+"622","Pneumonia",0.55,0.00075875
+"623","Pneumonia",0.35,0.000632
+"624","Pneumonia",0.65,0.00063175
+"625","Pneumonia",0.45,0.000629
+"626","Pneumonia",0.45,0.000755
+"627","Pneumonia",0.75,0.0007555
+"628","Pneumonia",0.35,0.00049925
+"629","Bronchial Asthma",0.75,0.000755
+"630","Pneumonia",0.8,0.00075525
+"631","Pneumonia",0.25,0.000503
+"632","Pneumonia",0.3,0.000501
+"633","Pneumonia",0.4,0.00037725
+"634","Pneumonia",0.7,0.00063025
+"635","Pneumonia",0.55,0.00076
+"636","Pneumonia",0.45,0.00063125
+"637","Pneumonia",0.65,0.00063175
+"638","Pneumonia",0.4,0.00063125
+"639","Pneumonia",0.75,0.000632
+"640","Pneumonia",0.7,0.000629
+"641","Pneumonia",0.9,0.000755
+"642","Pneumonia",0.3,0.00049775
+"643","Pneumonia",0.55,0.00062875
+"644","Pneumonia",0.35,0.0004995
+"645","Pneumonia",0.45,0.00050275
+"646","Pneumonia",0.7,0.00063175
+"647","Pneumonia",0.35,0.000375
+"648","Pneumonia",0.6,0.00062775
+"649","Pneumonia",0.75,0.00114025
+"650","Bronchial Asthma",0.7,0.0007535
+"651","Migraine",0.75,0.000749
+"652","Migraine",0.75,0.00087725
+"653","Migraine",0.85,0.001006
+"654","Migraine",0.75,0.00087825
+"655","Migraine",0.85,0.00100475
+"656","Migraine",0.9,0.00074975
+"657","Migraine",0.95,0.0013885
+"658","Migraine",0.85,0.000877
+"659","Migraine",0.85,0.00113325
+"660","Migraine",0.85,0.000875
+"661","Migraine",0.85,0.000748
+"662","Migraine",0.85,0.00125975
+"663","Migraine",0.85,0.00074825
+"664","Migraine",0.8,0.0007495
+"665","Migraine",0.86,0.00100425
+"666","Migraine",0.85,0.0012615
+"667","Hypertension",0.85,0.00087575
+"668","Hypertension",0.85,0.00061975
+"669","diabetes",0.95,0.001005
+"670","diabetes",0.85,0.00074775
+"671","Migraine",0.8,0.00062
+"672","Hypertension",0.85,0.00074825
+"673","Hypertension",0.9,0.00087725
+"674","Hypertension",0.9,0.0016455
+"675","Hypertension",0.85,0.00113225
+"676","Migraine",0.55,0.000876
+"677","Migraine",0.75,0.0006215
+"678","Migraine",0.8,0.0008765
+"679","Migraine",0.9,0.000878
+"680","Hypertension",0.7,0.000876
+"681","Hypertension",0.9,0.00138775
+"682","Hypertension",0.9,0.0008795
+"683","Hypertension",0.9,0.00113525
+"684","Migraine",0.85,0.00075
+"685","Hypertension",0.9,0.00113375
+"686","Migraine",0.8,0.00087725
+"687","Migraine",0.85,0.00100525
+"688","Hypertension",0.85,0.00100625
+"689","Hypertension",0.85,0.0006235
+"690","Migraine",0.95,0.00139025
+"691","Migraine",0.93,0.0013895
+"692","Hypertension",0.85,0.00088025
+"693","Migraine",0.8,0.00075325
+"694","Migraine",0.8,0.00062225
+"695","Migraine",0.86,0.000879
+"696","Migraine",0.8,0.00088075
+"697","Migraine",0.65,0.0006265
+"698","Migraine",0.85,0.00087925
+"699","Migraine",0.9,0.001391
+"700","Migraine",0.9,0.00100725
+"701","gastroesophageal reflux disease",0.8,0.00101125
+"702","Migraine",0.6,0.0007475
+"703","Migraine",0.8,0.00061875
+"704","Migraine",0.75,0.000618
+"705","Migraine",0.7,0.000746
+"706","diabetes",0.65,0.00087475
+"707","Migraine",0.75,0.000618
+"708","Migraine",0.9,0.00087475
+"709","Migraine",0.8,0.00100275
+"710","Migraine",0.85,0.0008745
+"711","gastroesophageal reflux disease",0.75,0.001267
+"712","gastroesophageal reflux disease",0.65,0.00075525
+"713","diabetes",0.65,0.000876
+"714","diabetes",0.7,0.0008745
+"715","diabetes",0.8,0.00151925
+"716","gastroesophageal reflux disease",0.65,0.00101475
+"717","Migraine",0.7,0.00062275
+"718","diabetes",0.8,0.0008795
+"719","diabetes",0.65,0.001007
+"720","gastroesophageal reflux disease",0.8,0.00114275
+"721","Migraine",0.8,0.00113575
+"722","Migraine",0.4,0.00062375
+"723","Migraine",0.6,0.00087975
+"724","gastroesophageal reflux disease",0.8,0.00088775
+"725","Migraine",0.4,0.00087925
+"726","Migraine",0.45,0.00075125
+"727","diabetes",0.7,0.0012635
+"728","diabetes",0.7,0.0007515
+"729","gastroesophageal reflux disease",0.8,0.0011435
+"730","gastroesophageal reflux disease",0.75,0.00075925
+"731","gastroesophageal reflux disease",0.75,0.00075925
+"732","diabetes",0.85,0.0013915
+"733","Migraine",0.4,0.001007
+"734","gastroesophageal reflux disease",0.8,0.001016
+"735","Migraine",0.85,0.00126225
+"736","gastroesophageal reflux disease",0.65,0.00127025
+"737","diabetes",0.85,0.001135
+"738","gastroesophageal reflux disease",0.7,0.001014
+"739","gastroesophageal reflux disease",0.8,0.001014
+"740","diabetes",0.72,0.0010075
+"741","gastroesophageal reflux disease",0.7,0.000759
+"742","gastroesophageal reflux disease",0.75,0.000759
+"743","Migraine",0.6,0.0011385
+"744","Migraine",0.7,0.000882
+"745","Migraine",0.7,0.0010105
+"746","diabetes",0.7,0.00088475
+"747","Migraine",0.55,0.000757
+"748","gastroesophageal reflux disease",0.8,0.001277
+"749","diabetes",0.45,0.0015225
+"750","gastroesophageal reflux disease",0.8,0.00114875
+"751","Cervical spondylosis",0.65,0.00114425
+"752","Cervical spondylosis",0.65,0.0008885
+"753","Cervical spondylosis",0.45,0.0006335
+"754","Cervical spondylosis",0.7,0.000762
+"755","Cervical spondylosis",0.65,0.0008905
+"756","Cervical spondylosis",0.7,0.0007625
+"757","Cervical spondylosis",0.55,0.0007615
+"758","Cervical spondylosis",0.45,0.0008885
+"759","Cervical spondylosis",0.75,0.0006325
+"760","Cervical spondylosis",0.7,0.0007615
+"761","Cervical spondylosis",0.45,0.00088875
+"762","Cervical spondylosis",0.65,0.00075975
+"763","Cervical spondylosis",0.65,0.00076025
+"764","Cervical spondylosis",0.65,0.00088825
+"765","Cervical spondylosis",0.7,0.000887
+"766","Cervical spondylosis",0.75,0.000631
+"767","Cervical spondylosis",0.6,0.0005045
+"768","Cervical spondylosis",0.4,0.00063175
+"769","Cervical spondylosis",0.6,0.00088775
+"770","Cervical spondylosis",0.55,0.000761
+"771","Cervical spondylosis",0.65,0.00075975
+"772","Cervical spondylosis",0.75,0.0007595
+"773","Cervical spondylosis",0.75,0.00076175
+"774","Cervical spondylosis",0.45,0.00076075
+"775","Cervical spondylosis",0.8,0.0006325
+"776","Cervical spondylosis",0.75,0.00088925
+"777","Cervical spondylosis",0.75,0.00063325
+"778","Cervical spondylosis",0.65,0.0006315
+"779","Cervical spondylosis",0.65,0.00063275
+"780","Cervical spondylosis",0.7,0.0008895
+"781","Cervical spondylosis",0.85,0.001144
+"782","Cervical spondylosis",0.4,0.00063225
+"783","Cervical spondylosis",0.85,0.00063225
+"784","Cervical spondylosis",0.55,0.00088775
+"785","Cervical spondylosis",0.7,0.0006335
+"786","Cervical spondylosis",0.8,0.00101625
+"787","Cervical spondylosis",0.7,0.0007615
+"788","Cervical spondylosis",0.75,0.00063475
+"789","Cervical spondylosis",0.7,0.00089
+"790","Pneumonia",0.65,0.0007565
+"791","Pneumonia",0.55,0.0007555
+"792","Pneumonia",0.45,0.00101225
+"793","Cervical spondylosis",0.45,0.00050475
+"794","Cervical spondylosis",0.7,0.00063175
+"795","Cervical spondylosis",0.7,0.00075925
+"796","Cervical spondylosis",0.45,0.00063225
+"797","Cervical spondylosis",0.55,0.00076075
+"798","Cervical spondylosis",0.55,0.00063225
+"799","Cervical spondylosis",0.85,0.00101675
+"800","Pneumonia",0.82,0.0010095
+"801","Jaundice",0.45,0.00062675
+"802","Jaundice",0.25,0.00037125
+"803","Jaundice",0.3,0.0008825
+"804","Jaundice",0.45,0.00113975
+"805","Jaundice",0.75,0.0007545
+"806","Jaundice",0.4,0.000627
+"807","Jaundice",0.65,0.000755
+"808","Jaundice",0.3,0.0006275
+"809","Jaundice",0.25,0.0004975
+"810","Jaundice",0.3,0.0004985
+"811","Jaundice",0.3,0.00062625
+"812","Jaundice",0.6,0.0010105
+"813","Jaundice",0.25,0.0004985
+"814","Jaundice",0.3,0.000754
+"815","Jaundice",0.3,0.00126625
+"816","Jaundice",0.3,0.0008825
+"817","Jaundice",0.4,0.000498
+"818","Jaundice",0.7,0.0008835
+"819","Jaundice",0.3,0.0004975
+"820","Jaundice",0.25,0.000627
+"821","Jaundice",0.3,0.0007555
+"822","Jaundice",0.25,0.0004995
+"823","Jaundice",0.4,0.0006275
+"824","Jaundice",0.35,0.0006275
+"825","Jaundice",0.4,0.00062625
+"826","Jaundice",0.35,0.0007545
+"827","Jaundice",0.25,0.000499
+"828","Jaundice",0.3,0.00062575
+"829","Jaundice",0.45,0.0008835
+"830","Jaundice",0.4,0.0006275
+"831","Jaundice",0.8,0.00113825
+"832","Jaundice",0.65,0.000754
+"833","Jaundice",0.8,0.00075475
+"834","Jaundice",0.4,0.000625
+"835","Jaundice",0.25,0.00075425
+"836","Jaundice",0.75,0.0010105
+"837","Jaundice",0.7,0.000754
+"838","Jaundice",0.3,0.0006275
+"839","Jaundice",0.35,0.000755
+"840","Jaundice",0.3,0.0004995
+"841","Jaundice",0.25,0.00049825
+"842","Jaundice",0.35,0.0007545
+"843","Jaundice",0.2,0.000371
+"844","Jaundice",0.3,0.00049775
+"845","Jaundice",0.35,0.0011375
+"846","Jaundice",0.65,0.00088175
+"847","Jaundice",0.35,0.00075375
+"848","Jaundice",0.6,0.000754
+"849","Jaundice",0.35,0.0006255
+"850","Jaundice",0.4,0.0004985
+"851","Dengue",0.55,0.001137
+"852","Dengue",0.5,0.0008815
+"853","Dengue",0.65,0.0010095
+"854","Dengue",0.6,0.00126675
+"855","Dengue",0.65,0.00139475
+"856","Dengue",0.6,0.0011375
+"857","Dengue",0.45,0.00139475
+"858","Dengue",0.45,0.00126825
+"859","Dengue",0.65,0.00101125
+"860","Dengue",0.4,0.00075625
+"861","Dengue",0.7,0.0008835
+"862","Dengue",0.7,0.00152175
+"863","Dengue",0.35,0.0008815
+"864","Dengue",0.45,0.00088175
+"865","Dengue",0.55,0.000627
+"866","Dengue",0.45,0.0007535
+"867","Dengue",0.55,0.0007535
+"868","Dengue",0.4,0.00075375
+"869","Dengue",0.45,0.0006255
+"870","Dengue",0.45,0.000754
+"871","Dengue",0.65,0.00126675
+"872","Dengue",0.45,0.0011395
+"873","Dengue",0.6,0.0008815
+"874","Dengue",0.7,0.00101
+"875","Malaria",0.55,0.0010075
+"876","Dengue",0.75,0.000754
+"877","Dengue",0.6,0.001009
+"878","Dengue",0.7,0.0007515
+"879","Dengue",0.65,0.00062525
+"880","Dengue",0.7,0.00075425
+"881","Dengue",0.45,0.0007535
+"882","Dengue",0.4,0.0007545
+"883","Dengue",0.65,0.00088225
+"884","Dengue",0.65,0.000754
+"885","Dengue",0.65,0.001265
+"886","Dengue",0.6,0.00100975
+"887","Dengue",0.55,0.0006255
+"888","Dengue",0.65,0.001009
+"889","Dengue",0.7,0.00101
+"890","Dengue",0.65,0.000882
+"891","Dengue",0.65,0.00113825
+"892","Dengue",0.6,0.00100975
+"893","Dengue",0.45,0.001139
+"894","Malaria",0.7,0.00100975
+"895","Dengue",0.6,0.00101025
+"896","Malaria",0.7,0.00139175
+"897","Dengue",0.8,0.00126675
+"898","Dengue",0.45,0.0008815
+"899","Dengue",0.65,0.00088075
+"900","Dengue",0.6,0.000882
+"901","urinary tract infection",0.25,0.00062725
+"902","urinary tract infection",0.25,0.000628
+"903","urinary tract infection",0.3,0.00062575
+"904","urinary tract infection",0.55,0.0006255
+"905","urinary tract infection",0.25,0.000499
+"906","urinary tract infection",0.3,0.000629
+"907","urinary tract infection",0.35,0.0011395
+"908","urinary tract infection",0.3,0.00062725
+"909","urinary tract infection",0.2,0.0005005
+"910","urinary tract infection",0.35,0.0006285
+"911","urinary tract infection",0.55,0.00075625
+"912","urinary tract infection",0.45,0.000757
+"913","urinary tract infection",0.45,0.00049975
+"914","urinary tract infection",0.4,0.00075575
+"915","urinary tract infection",0.7,0.0006285
+"916","urinary tract infection",0.55,0.000756
+"917","urinary tract infection",0.85,0.0006215
+"918","urinary tract infection",0.25,0.00036975
+"919","urinary tract infection",0.25,0.00049925
+"920","urinary tract infection",0.25,0.0006285
+"921","urinary tract infection",0.7,0.00139575
+"922","urinary tract infection",0.4,0.00049975
+"923","urinary tract infection",0.3,0.0005005
+"924","urinary tract infection",0.3,0.00049975
+"925","urinary tract infection",0.4,0.00088625
+"926","urinary tract infection",0.45,0.00062875
+"927","urinary tract infection",0.7,0.00075625
+"928","urinary tract infection",0.4,0.000756
+"929","urinary tract infection",0.3,0.0004995
+"930","urinary tract infection",0.85,0.00049875
+"931","urinary tract infection",0.35,0.00062475
+"932","urinary tract infection",0.25,0.00049775
+"933","urinary tract infection",0.4,0.00139625
+"934","urinary tract infection",0.4,0.000626
+"935","urinary tract infection",0.65,0.00088425
+"936","urinary tract infection",0.45,0.00062825
+"937","urinary tract infection",0.35,0.000757
+"938","urinary tract infection",0.45,0.000628
+"939","urinary tract infection",0.7,0.000628
+"940","urinary tract infection",0.65,0.001012
+"941","urinary tract infection",0.65,0.00126675
+"942","Malaria",0.8,0.00139125
+"943","urinary tract infection",0.7,0.00075275
+"944","urinary tract infection",0.2,0.00049775
+"945","urinary tract infection",0.4,0.00075375
+"946","urinary tract infection",0.7,0.000884
+"947","urinary tract infection",0.3,0.0007585
+"948","urinary tract infection",0.65,0.00101
+"949","urinary tract infection",0.3,0.00062425
+"950","urinary tract infection",0.65,0.000758
+"951","allergy",0.35,0.00062375
+"952","allergy",0.35,0.000624
+"953","allergy",0.3,0.00074975
+"954","allergy",0.7,0.00100575
+"955","Bronchial Asthma",0.65,0.00088275
+"956","Common Cold",0.85,0.0007515
+"957","Common Cold",0.7,0.00049325
+"958","allergy",0.75,0.00075175
+"959","allergy",0.35,0.00087825
+"960","allergy",0.55,0.000625
+"961","allergy",0.4,0.000622
+"962","allergy",0.2,0.00049425
+"963","allergy",0.2,0.00113375
+"964","Common Cold",0.8,0.0008775
+"965","Bronchial Asthma",0.7,0.0006275
+"966","Dengue",0.7,0.0012645
+"967","Common Cold",0.4,0.00062075
+"968","allergy",0.7,0.00062075
+"969","allergy",0.6,0.00139025
+"970","allergy",0.75,0.000624
+"971","allergy",0.4,0.0004935
+"972","allergy",0.2,0.0004945
+"973","allergy",0.3,0.00074975
+"974","Common Cold",0.8,0.00075075
+"975","Bronchial Asthma",0.7,0.000627
+"976","Dengue",0.8,0.00152125
+"977","Common Cold",0.4,0.0004925
+"978","allergy",0.6,0.00062125
+"979","allergy",0.2,0.00062275
+"980","allergy",0.6,0.0006245
+"981","allergy",0.4,0.0007495
+"982","allergy",0.3,0.00049475
+"983","Bronchial Asthma",0.7,0.00101225
+"984","Bronchial Asthma",0.67,0.00101175
+"985","Bronchial Asthma",0.45,0.00049825
+"986","Common Cold",0.6,0.001008
+"987","Common Cold",0.4,0.00062
+"988","allergy",0.7,0.000622
+"989","allergy",0.7,0.00075225
+"990","allergy",0.3,0.00049525
+"991","allergy",0.35,0.00075
+"992","allergy",0.25,0.00049575
+"993","allergy",0.4,0.000878
+"994","Common Cold",0.7,0.0008785
+"995","Bronchial Asthma",0.55,0.00062675
+"996","Common Cold",0.7,0.00177475
+"997","Common Cold",0.35,0.0004925
+"998","allergy",0.25,0.00049325
+"999","allergy",0.78,0.00075075
+"1000","allergy",0.3,0.000623
+"1001","gastroesophageal reflux disease",0.25,0.00050325
+"1002","gastroesophageal reflux disease",0.45,0.00050475
+"1003","gastroesophageal reflux disease",0.85,0.00088825
+"1004","gastroesophageal reflux disease",0.3,0.00050225
+"1005","gastroesophageal reflux disease",0.6,0.00075775
+"1006","gastroesophageal reflux disease",0.4,0.00063175
+"1007","gastroesophageal reflux disease",0.3,0.0006325
+"1008","gastroesophageal reflux disease",0.35,0.000503
+"1009","gastroesophageal reflux disease",0.35,0.00050475
+"1010","gastroesophageal reflux disease",0.45,0.0006295
+"1011","gastroesophageal reflux disease",0.2,0.0005025
+"1012","gastroesophageal reflux disease",0.7,0.0007595
+"1013","gastroesophageal reflux disease",0.8,0.0008875
+"1014","gastroesophageal reflux disease",0.3,0.0005025
+"1015","gastroesophageal reflux disease",0.35,0.0006295
+"1016","gastroesophageal reflux disease",0.35,0.00063225
+"1017","gastroesophageal reflux disease",0.3,0.00076075
+"1018","gastroesophageal reflux disease",0.25,0.00088625
+"1019","gastroesophageal reflux disease",0.2,0.00037625
+"1020","gastroesophageal reflux disease",0.8,0.000501
+"1021","gastroesophageal reflux disease",0.3,0.00050175
+"1022","gastroesophageal reflux disease",0.65,0.0007605
+"1023","gastroesophageal reflux disease",0.95,0.00088875
+"1024","gastroesophageal reflux disease",0.25,0.00050325
+"1025","gastroesophageal reflux disease",0.7,0.000757
+"1026","gastroesophageal reflux disease",0.3,0.00063175
+"1027","gastroesophageal reflux disease",0.25,0.00050425
+"1028","gastroesophageal reflux disease",0.5,0.0008865
+"1029","gastroesophageal reflux disease",0.2,0.00050325
+"1030","gastroesophageal reflux disease",0.6,0.000757
+"1031","gastroesophageal reflux disease",0.2,0.00037375
+"1032","gastroesophageal reflux disease",0.4,0.000632
+"1033","gastroesophageal reflux disease",0.85,0.00088825
+"1034","gastroesophageal reflux disease",0.35,0.00063075
+"1035","gastroesophageal reflux disease",0.4,0.00075725
+"1036","gastroesophageal reflux disease",0.4,0.000632
+"1037","gastroesophageal reflux disease",0.3,0.0006325
+"1038","gastroesophageal reflux disease",0.25,0.000502
+"1039","gastroesophageal reflux disease",0.15,0.000504
+"1040","gastroesophageal reflux disease",0.75,0.00063025
+"1041","gastroesophageal reflux disease",0.3,0.0005005
+"1042","gastroesophageal reflux disease",0.45,0.00063175
+"1043","gastroesophageal reflux disease",0.85,0.00127125
+"1044","gastroesophageal reflux disease",0.35,0.00075875
+"1045","gastroesophageal reflux disease",0.65,0.0007565
+"1046","gastroesophageal reflux disease",0.4,0.00063175
+"1047","gastroesophageal reflux disease",0.7,0.00050025
+"1048","gastroesophageal reflux disease",0.2,0.000502
+"1049","gastroesophageal reflux disease",0.25,0.00063075
+"1050","gastroesophageal reflux disease",0.4,0.00063225
+"1051","Dengue",0.8,0.00100775
+"1052","Migraine",0.7,0.00062125
+"1053","Dengue",0.85,0.0012655
+"1054","Psoriasis",0.75,0.00087925
+"1055","gastroesophageal reflux disease",0.9,0.00165525
+"1056","Fungal infection",0.75,0.00088075
+"1057","Psoriasis",0.75,0.0008795
+"1058","diabetes",0.9,0.000622
+"1059","Fungal infection",0.8,0.00075075
+"1060","diabetes",0.95,0.00074825
+"1061","drug reaction",0.95,0.0015165
+"1062","drug reaction",0.7,0.00126225
+"1063","Migraine",0.6,0.00074925
+"1064","Dengue",0.8,0.0011385
+"1065","Psoriasis",0.8,0.00177475
+"1066","Pneumonia",0.9,0.001521
+"1067","Psoriasis",0.75,0.00074975
+"1068","Fungal infection",0.72,0.0008815
+"1069","drug reaction",0.85,0.0010055
+"1070","Fungal infection",0.9,0.00164625
+"1071","diabetes",0.95,0.00087625
+"1072","drug reaction",0.92,0.00087625
+"1073","Common Cold",0.7,0.0010045
+"1074","Migraine",0.8,0.00062175
+"1075","Dengue",0.85,0.00139525
+"1076","Psoriasis",0.85,0.00075075
+"1077","Pneumonia",0.7,0.00088125
+"1078","Psoriasis",0.7,0.0006225
+"1079","Fungal infection",0.72,0.00088125
+"1080","drug reaction",0.9,0.00190125
+"1081","Fungal infection",0.85,0.00113575
+"1082","diabetes",0.85,0.00062
+"1083","drug reaction",0.95,0.001004
+"1084","Common Cold",0.75,0.0017725
+"1085","Migraine",0.75,0.000622
+"1086","Common Cold",0.9,0.00126375
+"1087","Psoriasis",0.8,0.001008
+"1088","Pneumonia",0.78,0.001137
+"1089","allergy",0.75,0.0007505
+"1090","Psoriasis",0.85,0.00087875
+"1091","drug reaction",0.85,0.00126125
+"1092","Fungal infection",0.85,0.001135
+"1093","diabetes",0.95,0.00151525
+"1094","drug reaction",0.95,0.001515
+"1095","Dengue",0.6,0.0007505
+"1096","Migraine",0.75,0.0004935
+"1097","Dengue",0.9,0.00088325
+"1098","drug reaction",0.85,0.0011355
+"1099","gastroesophageal reflux disease",0.85,0.00088475
+"1100","Psoriasis",0.7,0.0006225
+"1101","gastroesophageal reflux disease",0.45,0.00063
+"1102","peptic ulcer disease",0.4,0.00062775
+"1103","gastroesophageal reflux disease",0.3,0.00063175
+"1104","Dimorphic Hemorrhoids",0.9,0.001142
+"1105","peptic ulcer disease",0.6,0.00114025
+"1106","diabetes",0.85,0.00138925
+"1107","peptic ulcer disease",0.7,0.00075625
+"1108","peptic ulcer disease",0.8,0.000755
+"1109","gastroesophageal reflux disease",0.45,0.0005035
+"1110","gastroesophageal reflux disease",0.4,0.0008855
+"1111","gastroesophageal reflux disease",0.4,0.0005025
+"1112","peptic ulcer disease",0.6,0.00113925
+"1113","gastroesophageal reflux disease",0.3,0.0006315
+"1114","Dimorphic Hemorrhoids",0.7,0.00063025
+"1115","peptic ulcer disease",0.6,0.00088375
+"1116","Typhoid",0.9,0.00100725
+"1117","gastroesophageal reflux disease",0.35,0.00063275
+"1118","peptic ulcer disease",0.85,0.001522
+"1119","gastroesophageal reflux disease",0.35,0.000759
+"1120","gastroesophageal reflux disease",0.35,0.00063025
+"1121","gastroesophageal reflux disease",0.45,0.00062975
+"1122","peptic ulcer disease",0.7,0.00075525
+"1123","gastroesophageal reflux disease",0.2,0.0005025
+"1124","Dimorphic Hemorrhoids",0.8,0.0006305
+"1125","peptic ulcer disease",0.85,0.0010105
+"1126","Typhoid",0.75,0.00087825
+"1127","gastroesophageal reflux disease",0.3,0.00076
+"1128","gastroesophageal reflux disease",0.8,0.0008865
+"1129","gastroesophageal reflux disease",0.2,0.000503
+"1130","gastroesophageal reflux disease",0.75,0.00139875
+"1131","gastroesophageal reflux disease",0.35,0.0006305
+"1132","peptic ulcer disease",0.3,0.0004985
+"1133","gastroesophageal reflux disease",0.25,0.000631
+"1134","Dimorphic Hemorrhoids",0.9,0.000887
+"1135","peptic ulcer disease",0.8,0.00165025
+"1136","Typhoid",0.8,0.00113425
+"1137","gastroesophageal reflux disease",0.3,0.00063175
+"1138","peptic ulcer disease",0.8,0.00101075
+"1139","gastroesophageal reflux disease",0.3,0.000631
+"1140","gastroesophageal reflux disease",0.65,0.0006315
+"1141","gastroesophageal reflux disease",0.3,0.00062925
+"1142","peptic ulcer disease",0.35,0.000627
+"1143","gastroesophageal reflux disease",0.3,0.00063175
+"1144","Dimorphic Hemorrhoids",0.85,0.0006305
+"1145","peptic ulcer disease",0.8,0.00139325
+"1146","Typhoid",0.85,0.00126275
+"1147","gastroesophageal reflux disease",0.7,0.0006325
+"1148","peptic ulcer disease",0.85,0.001139
+"1149","gastroesophageal reflux disease",0.4,0.000759
+"1150","gastroesophageal reflux disease",0.75,0.0007595
+"1151","diabetes",0.3,0.000621
+"1152","diabetes",0.75,0.0007505
+"1153","diabetes",0.65,0.000621
+"1154","diabetes",0.3,0.000493
+"1155","drug reaction",0.88,0.00100525
+"1156","Common Cold",0.9,0.001008
+"1157","diabetes",0.72,0.0007505
+"1158","diabetes",0.35,0.00049375
+"1159","diabetes",0.75,0.0017715
+"1160","gastroesophageal reflux disease",0.75,0.00114275
+"1161","diabetes",0.45,0.00049325
+"1162","diabetes",0.75,0.00087875
+"1163","diabetes",0.6,0.0006205
+"1164","diabetes",0.3,0.00049225
+"1165","drug reaction",0.92,0.001134
+"1166","Common Cold",0.75,0.0011345
+"1167","Fungal infection",0.65,0.00088025
+"1168","diabetes",0.3,0.00049375
+"1169","diabetes",0.7,0.0008765
+"1170","gastroesophageal reflux disease",0.7,0.00127175
+"1171","diabetes",0.3,0.0004935
+"1172","diabetes",0.75,0.0010065
+"1173","diabetes",0.45,0.00087675
+"1174","diabetes",0.2,0.0003645
+"1175","drug reaction",0.95,0.0011345
+"1176","Common Cold",0.8,0.0011345
+"1177","Fungal infection",0.55,0.0008805
+"1178","diabetes",0.8,0.000621
+"1179","diabetes",0.65,0.000877
+"1180","Bronchial Asthma",0.7,0.000757
+"1181","diabetes",0.2,0.0006215
+"1182","diabetes",0.72,0.00075125
+"1183","diabetes",0.45,0.00062075
+"1184","diabetes",0.4,0.00049225
+"1185","drug reaction",0.9,0.0012625
+"1186","Common Cold",0.85,0.0007505
+"1187","Fungal infection",0.45,0.00075225
+"1188","diabetes",0.3,0.0007505
+"1189","allergy",0.55,0.00190125
+"1190","Bronchial Asthma",0.75,0.00114125
+"1191","diabetes",0.35,0.00049375
+"1192","Migraine",0.65,0.00087975
+"1193","diabetes",0.65,0.0007485
+"1194","diabetes",0.3,0.0004925
+"1195","drug reaction",0.95,0.001263
+"1196","Common Cold",0.75,0.000878
+"1197","Fungal infection",0.7,0.00139275
+"1198","diabetes",0.3,0.0006215
+"1199","Bronchial Asthma",0.75,0.00101125
+"1200","allergy",0.7,0.0006235
