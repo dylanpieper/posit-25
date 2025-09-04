@@ -1,4 +1,4 @@
-# From messy to meaningful data with LLMs
+# From messy to meaningful data: LLM-powered classification in R
 
 This repo includes the data, code, and slides for my post::conf(2025) talk.
 
