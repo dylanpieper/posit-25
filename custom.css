@@ -248,3 +248,19 @@
 .reveal .code-with-copy .copy-button {
   right: 0.25rem;
 }
+
+/* Footer styling */
+.reveal .footer.footer-default,
+.reveal .footer-default {
+  font-size: 0.6em !important;
+  color: #e4a089 !important;
+  font-family: 'Consolas', 'JetBrains Mono', 'Monaco', 'Courier New', monospace !important;
+}
+
+/* Target any text elements within the footer */
+.reveal .footer.footer-default *,
+.reveal .footer-default * {
+  font-size: 0.6em !important;
+  color: #e4a089 !important;
+  font-family: 'Consolas', 'JetBrains Mono', 'Monaco', 'Courier New', monospace !important;
+}
